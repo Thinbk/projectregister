@@ -1,0 +1,54 @@
+@extends('admin.navbar')
+
+<div id="wrapper">
+    <div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12sdf">
+                <ol class="breadcrumb">
+                    <li class="active"><i class="fa fa-dashboard"></i> Quản lý tài khoản</li>
+                </ol>
+            </div>
+        </div><!-- /.row -->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <h2>Danh sách tài khoản</h2>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover tablesorter">
+                        <thead>
+                        <tr>
+                            <th>Stt</th>
+                            <th>Họ và tên</th>
+                            <th>Email</th>
+                            <th>Tên Đăng Nhập</th>
+                            <th>Ngày sinh</th>
+                            <th>Quyền</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach ($user as $index => $users)
+                            <tr>
+                                <td>{{ $index+1 }}</td>
+                                <td>{{ $users->username }}</td>
+                                <td>{{ $users->email }}</td>
+                                <td>{{ $users->username }}</td>
+                                <td>{{ \Carbon\Carbon::parse($users->date_of_birth)->format('d/m/Y') }}</td>
+                                @if($users->user_type == 1 )
+                                    <td>Sinh viên</td>
+                                @else
+                                    <td>Giáo viên</td>
+                                @endif
+                                <td>
+                                    <button class="btn-danger"><a href="{{ route('deleteuser', ['id' => $users->id]) }}" >Xóa</a></button>
+                                    <button class="btn-primary">Cập nhật</button>
+                                </td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div><!-- /.row -->
+    </div><!-- /#wrapper -->
+</div>
