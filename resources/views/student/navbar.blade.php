@@ -12,7 +12,7 @@
                 <li><a href="{{ route('gettopic') }}"><i class="fa fa-table"></i> Đăng ký đề tài</a></li>
                 <li><a href="{{ route('extendTopic') }}"><i class="fa fa-edit"></i> Gia hạn đề tài</a></li>
                 <li><a href="{{ route('getcancel') }}"><i class="fa fa-edit"></i> Hủy đề tài</a></li>
-                <li><a href="{{ route('submittopic') }}"><i class="fa fa-edit"></i> Nộp báo cáo </a></li>
+                <li><a href="{{ route('submitreport') }}"><i class="fa fa-edit"></i> Nộp báo cáo </a></li>
                 <li>
                     <a href="{{ route('logout') }}"><i class="fa fa-table"></i> Đăng xuất </a>
                 </li>

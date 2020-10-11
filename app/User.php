@@ -50,7 +50,7 @@ class User extends Authenticatable
         $addUser->password = Hash::make($request['password']);
         $addUser->full_name = $request['full_name'];
         $addUser->email = $request['email'];
-        $addUser->user_type = 3;
+        $addUser->user_type = $request['type'];
 
         $addUser->save();
     }

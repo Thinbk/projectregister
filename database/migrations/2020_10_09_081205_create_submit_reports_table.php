@@ -15,9 +15,12 @@ class CreateSubmitReportsTable extends Migration
     {
         Schema::create('submit_reports', function (Blueprint $table) {
             $table->id();
-            $table->integer('topic_id');
-            $table->text('file');
-            $table->text('status');
+            $table->string('topic_code')->nullable();
+            $table->integer('student_id')->nullable();
+            $table->text('student_name')->nullable();
+            $table->text('file')->nullable();
+            $table->text('description')->nullable(); // ten , noi dung do an
+            $table->integer('status')->nullable();
             $table->timestamp('created_at')->nullable();
             $table->timestamp('updated_at')->nullable();
         });

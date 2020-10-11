@@ -3,21 +3,26 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class SubmitReport extends Model
 {
     //
     protected $fillable = [
-        'topic_id',
+        'topic_code',
         'file',
-        'status'
+        'status',
+        'student_id',
+        'student_name',
+        'description'
     ];
 
-    public function submitProject($request)
+    public function submitReport($request)
     {
         $submitReport = new SubmitReport();
-        $submitReport->name = $request['name'];
-        $submitReport->topic_id = $request['topic_id'];
+        $submitReport->student_name = $request['student_name'];
+        $submitReport->topic_code = $request['topic_code'];
+        $submitReport->student_id = Auth::user()->id;
         $submitReport->file = $request['file'];
         $submitReport->status = 0;
 

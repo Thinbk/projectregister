@@ -18,50 +18,38 @@
                     <div class="form-group row">
                         <label for="inputUser" class="col-sm-2 col-form-label">Họ và tên</label>
                         <div class="col-sm-10">
-                            nguyen dang thin
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label for="inputUser" class="col-sm-2 col-form-label">Mã số</label>
-                        <div class="col-sm-10">
-                            nguyen dang thin
+                            <input type="text" name="student_name" class="form-control" id="inputUser">
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label for="inputUser" class="col-sm-2 col-form-label">Khoa</label>
                         <div class="col-sm-10">
-                            CNTT
+                            <input type="text" name="major" class="form-control" id="inputUser">
                         </div>
                     </div>
-
                     <div class="form-group row">
-                        <label for="inputUser" class="col-sm-2 col-form-label">Tên đề tài</label>
+                        <label for="inputUser" class="col-sm-2 col-form-label">Mã đề tài</label>
                         <div class="col-sm-10">
-                            CNTT
+                            <select name="topic_code" class="form-control">
+                                <option value="IT1890">IT1890</option>
+                                <option value="IT1490">IT1490</option>
+                                <option value="IT2890">IT2890</option>
+                                <option value="IT1023">IT1023</option>
+                                <option value="IT1099">IT1099</option>
+                            </select>
                         </div>
                     </div>
-
                     <div class="form-group row">
                         <label for="inputUser" class="col-sm-2 col-form-label">File báo cáo</label>
                         <div class="col-sm-10">
-                            CNTT
+                            <input name="file" type="file">
                         </div>
                     </div>
-
-                    <div class="form-group row">
-                        <label for="inputUser" class="col-sm-2 col-form-label">Mô tả</label>
-                        <div class="col-sm-10">
-                            <input name="filesTest" type="file">
-                        </div>
-                    </div>
-
                     <button type="reset" class="btn btn-danger">Hủy</button>
                     <button type="submit" class="btn btn-warning">Gửi</button>
                 </form>
             </div>
         </div>
-
     </div>
 </div>

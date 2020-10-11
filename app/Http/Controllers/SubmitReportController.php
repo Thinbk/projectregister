@@ -22,9 +22,15 @@ class SubmitReportController extends Controller
 
     public function submitReport(Request $request)
     {
-        print_r($request->allFiles());
-        die;
+//        dd($request);
+//        print_r($request->allFiles());
+//        die;
 //        $file = $request->filesTest;
+//        $file = $request->all();
+//        $file->file->move('upload', $file->getClientOriginalName());
+//        $this->submit->submitReport($file);
 
+
+        return view('student.submitproject');
     }
 }

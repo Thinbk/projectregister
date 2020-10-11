@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class Topic extends Model
@@ -15,6 +16,7 @@ class Topic extends Model
         'student_id',
         'topic_status',
         'lecturer_id',
+        'date',
         'cancel_topic_status'
     ];
 
@@ -25,8 +27,10 @@ class Topic extends Model
         $createtopic->name = $request['nametopic'];
         $createtopic->lecturer_id = $request['lecturer_id'];
         $createtopic->lecturer_name = $request['teacher'];
-        $createtopic->student_id = 7;
-        $createtopic->topic_status = null;
+        $createtopic->student_id = Auth::user()->id;
+        $createtopic->date = $request['date'];
+        $createtopic->topic_code = $request['topic_code'];
+        $createtopic->topic_status = 0;
         $createtopic->cancel_topic_status = 1;
 
         $createtopic->save();

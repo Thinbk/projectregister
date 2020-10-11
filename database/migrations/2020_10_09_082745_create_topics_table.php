@@ -18,6 +18,7 @@ class CreateTopicsTable extends Migration
             $table->text('name')->nullable();
             $table->string('student_id')->nullable();
             $table->integer('topic_status')->nullable();
+            $table->integer('topic_code')->nullable();
             $table->integer('lecturer_id')->nullable();
             $table->text('lecturer_name')->nullable();
             $table->timestamp('date')->nullable();

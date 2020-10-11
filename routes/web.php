@@ -24,7 +24,8 @@ Route::post('/login','UserController@login')->name('postLogin');
 Route::get('/logout','UserController@logout')->name('logout');
 
 // admin
-Route::prefix('admin')->group(function (){
+//Route::prefix('admin')->group(function (){
+Route::middleware(['checkrole:admin'])->prefix('admin')->group(function(){
 
     Route::get('/getuser', 'UserController@getUser')->name('getuser');
 
@@ -38,7 +39,8 @@ Route::prefix('admin')->group(function (){
 //studen
 //
 //Ro
-Route::middleware(['checkrole:admin'])->group(function () {
+
+Route::middleware(['checkrole:student'])->prefix('student')->group(function(){
 
     Route::get('/createtopic', 'TopicController@getTopic')->name('gettopic');
     Route::post('/createtopic', 'TopicController@postTopic')->name('posttopic');
@@ -51,10 +53,7 @@ Route::middleware(['checkrole:admin'])->group(function () {
     Route::get('/extendtopic', 'TopicController@extendTopic')->name('extendTopic');
     Route::post('/extendtopic', 'TopicController@extendTopic')->name('postExtendTopic');
 
-    Route::get('/submittopic', 'SubmitReportController@getFormSubmit')->name('submittopic');
-    Route::post('/submittopic', 'SubmitReportController@submitReport')->name('submit');
+    Route::get('/submitreport', 'SubmitReportController@getFormSubmit')->name('submitreport');
+    Route::post('/submitreport', 'SubmitReportController@submitReport')->name('submit');
 
-    Route::get('/submitproject', function () {
-        return view('student/submitproject');
-    });
 });
