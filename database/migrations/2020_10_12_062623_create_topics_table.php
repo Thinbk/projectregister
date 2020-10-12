@@ -16,11 +16,12 @@ class CreateTopicsTable extends Migration
         Schema::create('topics', function (Blueprint $table) {
             $table->id();
             $table->text('name')->nullable();
-            $table->string('student_id')->nullable();
+            $table->string('topic_code')->unique()->nullable();
+            $table->unsignedBigInteger('student_id');
+            $table->unsignedBigInteger('lecturer_id');
+            $table->foreign('student_id')->references('id')->on('students');
+            $table->foreign('lecturer_id')->references('id')->on('lecturers');
             $table->integer('topic_status')->nullable();
-            $table->string('topic_code')->nullable();
-            $table->integer('lecturer_id')->nullable();
-            $table->text('lecturer_name')->nullable();
             $table->timestamp('date')->nullable();
             $table->integer('cancel_topic_status')->nullable();
             $table->timestamp('created_at')->nullable();

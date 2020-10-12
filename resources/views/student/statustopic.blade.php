@@ -30,7 +30,7 @@
                             <td>{{ \Carbon\Carbon::parse($topics->date_of_birth)->format('d/m/Y') }}</td>
                             @if($topics->topic_status == 0 )
                                 <td>Chờ duyệt</td>
-                            @elseif($topics->topic_status == 1 )
+                            @else($topics->topic_status == 1 )
                                 <td>Đã duyệt</td>
                             @endif
                         </tr>

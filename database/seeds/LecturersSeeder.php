@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class LecturersSeeder extends Seeder
 {
@@ -11,7 +12,7 @@ class LecturersSeeder extends Seeder
      */
     public function run()
     {
-        //
+        DB::table('lecturers')->delete();
         DB::table('lecturers')->insert([
             'user_id' => 2,
         ]);

@@ -15,11 +15,8 @@ class CreateLecturersTable extends Migration
     {
         Schema::create('lecturers', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id');
-            $table->timestamp('created_at')->nullable();
-            $table->integer('created_by')->nullable();
-            $table->timestamp('updated_at')->nullable();
-            $table->integer('updated_by')->nullable();
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

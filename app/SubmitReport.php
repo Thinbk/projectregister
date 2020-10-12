@@ -9,11 +9,9 @@ class SubmitReport extends Model
 {
     //
     protected $fillable = [
-        'topic_code',
+        'topic_id',
         'file',
         'status',
-        'student_id',
-        'student_name',
         'description'
     ];
 
@@ -21,7 +19,7 @@ class SubmitReport extends Model
     {
         $submitReport = new SubmitReport();
         $submitReport->student_name = $request['student_name'];
-        $submitReport->topic_code = $request['topic_code'];
+        $submitReport->topic_id = $request['topic_code'];
         $submitReport->student_id = Auth::user()->id;
         $submitReport->file = $request['file'];
         $submitReport->status = 0;
