@@ -18,9 +18,8 @@
                     <tr>
                         <th width="5%">STT</th>
                         <th width="40%">Tiêu đề</th>
-                        <th width="15%">Tên giáo viên</th>
-                        <th width="15%">Tên sinh viên</th>
-                        <th width="10%">Ngày gửi</th>
+                        <th width="25%">Giáo viên hướng dẫn</th>
+                        <th width="15%">Ngày gửi</th>
                         <th width="15%"></th>
                     </tr>
                     </thead>
@@ -29,8 +28,7 @@
                         <tr>
                             <td>{{ $index+1 }}</td>
                             <td>{{ $extendtopic->name }}</td>
-                            <td>{{ $extendtopic->lecturer_name }}</td>
-                            <td>{{ $extendtopic->lecturer_name }}</td>
+                            <td>{{ $extendtopic->lecturer->user->full_name }}</td>
                             <td>{{ \Carbon\Carbon::parse($extendtopic->created_at)->format('d/m/Y') }}</td>
                             <td>
                                 <button class="btn-warning"> Gia Hạn đề tài</button>

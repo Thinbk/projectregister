@@ -18,42 +18,37 @@
                     <div class="form-group row">
                         <label for="inputUser" class="col-sm-2 col-form-label">Tên Đề Tài*</label>
                         <div class="col-sm-10">
-                            <textarea name="nametopic" class="form-control" rows="3"></textarea>
+                            <textarea style="resize: vertical" name="topic_name" class="form-control" rows="3"></textarea>
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label for="inputUser" class="col-sm-2 col-form-label">Mã đề tài</label>
                         <div class="col-sm-10">
-                            <select name="topic_code" class="form-control">
-                                <option value="IT1890">IT1890</option>
-                                <option value="IT1490">IT1490</option>
-                                <option value="IT2890">IT2890</option>
-                                <option value="IT1023">IT1023</option>
-                                <option value="IT1099">IT1099</option>
-                            </select>
+                            <input type="text" name="topic_code" class="form-control" id="topic-code">
                         </div>
                     </div>
 
-                    <div class="form-group row">
-                        <label for="inputTeacher" class="col-sm-2 col-form-label">Tên Giáo Viên Hướng Dẫn</label>
-                        <div class="col-sm-10">
-                            <input type="text" name="teacher" class="form-control" id="inputTeacher">
-                        </div>
-                    </div>
+{{--                    <div class="form-group row">--}}
+{{--                        <label for="inputTeacher" class="col-sm-2 col-form-label">Tên Giáo Viên Hướng Dẫn</label>--}}
+{{--                        <div class="col-sm-10">--}}
+{{--                            <input type="text" name="teacher" class="form-control" id="inputTeacher">--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
 
+                    @if(isset($lecturers) && !empty($lecturers))
                     <div class="form-group row">
-                        <label for="inputTeacherCode" class="col-sm-2 col-form-label">Mã Số Giáo Viên Hướng Dẫn</label>
+                        <label for="inputTeacherCode" class="col-sm-2 col-form-label">Giáo Viên Hướng Dẫn *</label>
                         <div class="col-sm-10">
-                            <select name="lecturer_id" class="form-control">
-                                <option value="12345">12345</option>
-                                <option value="12346">12346</option>
-                                <option value="12347">12347</option>
-                                <option value="12348">12348</option>
-                                <option value="12349">12349</option>
+                            <select name="lecturers" class="form-control">
+                                <option value="0">--Chọn giáo viên--</option>
+                                @foreach($lecturers as $lecturer)
+                                    <option value="{{ $lecturer->id }}">{{ $lecturer->user->full_name }}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
+                    @endif
 
                     <div class="form-group row">
                         <label for="inputDate" class="col-sm-2 col-form-label">Ngày gia hạn</label>
@@ -61,6 +56,7 @@
                             <input type="date" name="date" class="form-control" id="inputDate">
                         </div>
                     </div>
+                    <input type="hidden" name="student_id" value="{{ Auth::user()->student->id }}">
 
                     <button type="reset" class="btn btn-danger">Hủy</button>
                     <button type="submit" class="btn btn-warning">Submit</button>

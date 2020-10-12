@@ -36,9 +36,13 @@ class User extends Authenticatable
         return $this->hasOne('App\Admin');
     }
 
+    public function lecturer() {
+        return $this->hasOne('App\Lecturer');
+    }
+
     public function getUser()
     {
-        return $user = User::all();
+        return User::all();
     }
 
     public function createUser($request)

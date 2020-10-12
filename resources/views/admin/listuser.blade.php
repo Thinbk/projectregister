@@ -21,7 +21,8 @@
                             <th>Họ và tên</th>
                             <th>Email</th>
                             <th>Tên Đăng Nhập</th>
-                            <th>Ngày sinh</th>
+                            <th>Ngày tạo</th>
+                            <th>Ngày cập nhật mới nhất</th>
                             <th>Quyền</th>
                             <th></th>
                         </tr>
@@ -32,8 +33,9 @@
                                 <td>{{ $index+1 }}</td>
                                 <td>{{ $users->username }}</td>
                                 <td>{{ $users->email }}</td>
-                                <td>{{ $users->username }}</td>
-                                <td>{{ \Carbon\Carbon::parse($users->date_of_birth)->format('d/m/Y') }}</td>
+                                <td>{{ $users->full_name }}</td>
+                                <td>{{ \Carbon\Carbon::parse($users->created_at)->format('d/m/Y') }}</td>
+                                <td></td>
                                 @if($users->user_type == 1 )
                                     <td>Sinh viên</td>
                                 @else
