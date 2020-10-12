@@ -15,9 +15,8 @@ class CreateSubmitReportsTable extends Migration
     {
         Schema::create('submit_reports', function (Blueprint $table) {
             $table->id();
-            $table->string('topic_code')->nullable();
-            $table->integer('student_id')->nullable();
-            $table->text('student_name')->nullable();
+            $table->unsignedBigInteger('topic_id');
+            $table->foreign('topic_id')->references('id')->on('topics')->onDelete('cascade');
             $table->text('file')->nullable();
             $table->text('description')->nullable(); // ten , noi dung do an
             $table->integer('status')->nullable();

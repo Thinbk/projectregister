@@ -25,7 +25,7 @@
                     <div class="form-group row">
                         <label for="inputPassword" class="col-sm-2 col-form-label">Mật Khẩu*</label>
                         <div class="col-sm-10">
-                            <input type="text" name="password" class="form-control" id="inputPassword" >
+                            <input type="password" name="password" class="form-control" id="inputPassword" >
                         </div>
                     </div>
 
