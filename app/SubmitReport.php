@@ -15,6 +15,10 @@ class SubmitReport extends Model
         'description'
     ];
 
+    public function topic() {
+        return $this->belongsTo('App\Topic', 'topic_id');
+    }
+
     public function submitReport($request)
     {
         $submitReport = new SubmitReport();

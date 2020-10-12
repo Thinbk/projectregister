@@ -13,8 +13,12 @@ class Student extends Model
         'school_year',
         'class',
     ];
-    public function user()
-    {
+
+    public function user() {
         return $this->belongsTo('App\User');
+    }
+
+    public function topic() {
+        return $this->hasOne('App\Topic', 'student_id');
     }
 }

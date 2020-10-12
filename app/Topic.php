@@ -17,21 +17,31 @@ class Topic extends Model
         'topic_status',
         'lecturer_id',
         'date',
-        'cancel_topic_status'
     ];
+
+    public function lecturer() {
+        return $this->belongsTo('App\Lecturer', 'lecturer_id');
+    }
+
+    public function student() {
+        return $this->belongsTo('App\Student', 'student_id');
+    }
+
+    public function submit_report() {
+        return $this->hasOne('App\SubmitReport', 'topic_id');
+    }
 
     public function createTopic($request)
     {
         $createtopic = new Topic();
 
-        $createtopic->name = $request['nametopic'];
-        $createtopic->lecturer_id = $request['lecturer_id'];
-        $createtopic->lecturer_name = $request['teacher'];
-        $createtopic->student_id = Auth::user()->id;
-        $createtopic->date = $request['date'];
-        $createtopic->topic_id = $request['topic_code'];
+        $createtopic->name = $request->topic_name;
+        $createtopic->topic_code = $request->topic_code;
+        $createtopic->lecturer_id = $request->lecturers;
+        $createtopic->student_id = $request->student_id;
+        $createtopic->date = $request->date;
         $createtopic->topic_status = 0;
-        $createtopic->cancel_topic_status = 1;
+        $createtopic->cancel_topic_status = 0;
 
         $createtopic->save();
     }
@@ -43,6 +53,7 @@ class Topic extends Model
 
     public function cancelTopic($id)
     {
-        return DB::table('topics')->where('id', $id)->update(['cancel_topic_status' => 0 ]);
+        //trạng thái hủy có 3 TH: 0 - chưa hủy, 1 - đã hủy và chờ duyệt, 2 - đã duyệt hủy
+        return DB::table('topics')->where('id', $id)->update(['cancel_topic_status' => 1]); // chỗ này sửa lại là 1 nhé
     }
 }

@@ -25,5 +25,8 @@ class LecturersSeeder extends Seeder
         DB::table('lecturers')->insert([
             'user_id' => 5,
         ]);
+        DB::table('lecturers')->insert([
+            'user_id' => 6,
+        ]);
     }
 }

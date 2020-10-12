@@ -17,9 +17,10 @@
                     <thead>
                     <tr>
                         <th width="5%">STT</th>
-                        <th width="55%">Tiêu đề</th>
-                        <th width="20%">Ngày gửi</th>
-                        <th width="20%">Trạng thái</th>
+                        <th width="40%">Tiêu đề</th>
+                        <th width="25">Giáo viên hướng dẫn</th>
+                        <th width="15%">Ngày gửi</th>
+                        <th width="15%">Trạng thái</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -27,10 +28,19 @@
                         <tr>
                             <td>{{ $index+1 }}</td>
                             <td>{{ $topics->name }}</td>
+                            <td>{{ $topics->lecturer->user->full_name }}</td> {{--Thêm mới--}}
                             <td>{{ \Carbon\Carbon::parse($topics->date_of_birth)->format('d/m/Y') }}</td>
+
+                            {{--@if($topics->topic_status == '' )
+                                <td>Mới tạo</td>
+                            @elseif($topics->topic_status == 1 )
+                                <td>Chờ duyệt</td>
+                            @elseif($topics->topic_status == 2 )
+                                <td>Đã duyệt</td>
+                            @endif--}}
                             @if($topics->topic_status == 0 )
                                 <td>Chờ duyệt</td>
-                            @else($topics->topic_status == 1 )
+                            @elseif($topics->topic_status == 1 )
                                 <td>Đã duyệt</td>
                             @endif
                         </tr>

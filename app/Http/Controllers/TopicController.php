@@ -3,25 +3,29 @@
 namespace App\Http\Controllers;
 
 use App\Topic;
+use App\Lecturer;
 use Illuminate\Http\Request;
 
 class TopicController extends Controller
 {
     //
     protected $topic;
+    protected $lecturer;
 
-    public function __construct(Topic $topic)
+    public function __construct(Topic $topic, Lecturer $lecturer)
     {
         $this->topic = $topic;
+        $this->lecturer = $lecturer;
     }
     public function getTopic()
     {
-        return view('student.createtopic');
+        return view('student.createtopic', [
+            'lecturers' => $this->lecturer->getAllLecturer(),
+        ]);
     }
     public function postTopic(Request $request)
     {
-        $topic = $request->all();
-        $this->topic->createTopic($topic);
+        $this->topic->createTopic($request);
         return redirect()->route('gettopic');
     }
     public function statusTopic()
