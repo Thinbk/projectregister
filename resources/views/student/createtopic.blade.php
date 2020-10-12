@@ -56,7 +56,7 @@
                     </div>
 
                     <div class="form-group row">
-                        <label for="inputDate" class="col-sm-2 col-form-label">Ngày gia hạn</label>
+                        <label for="inputDate" class="col-sm-2 col-form-label">Ngày hạn</label>
                         <div class="col-sm-10">
                             <input type="date" name="date" class="form-control" id="inputDate">
                         </div>

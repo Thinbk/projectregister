@@ -28,12 +28,9 @@
                             <td>{{ $index+1 }}</td>
                             <td>{{ $topics->name }}</td>
                             <td>{{ \Carbon\Carbon::parse($topics->date_of_birth)->format('d/m/Y') }}</td>
-
-                            @if($topics->topic_status == '' )
-                                <td>Mới tạo</td>
-                            @elseif($topics->topic_status == 1 )
+                            @if($topics->topic_status == 0 )
                                 <td>Chờ duyệt</td>
-                            @elseif($topics->topic_status == 2 )
+                            @else($topics->topic_status == 1 )
                                 <td>Đã duyệt</td>
                             @endif
                         </tr>
