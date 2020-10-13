@@ -51,13 +51,15 @@ class UserController extends Controller
     public function login(Request $request)
     {
         if (Auth::attempt(['username' => $request->username, 'password' => $request->password])) {
-//            dd($request);
             // login thành công
             // check xem user này thuộc cái nàog. và chuyển hướng tới cái đó.
             // dd(Auth::user()->id);
 
             if (Auth::user()->user_type == 3) {
                 return redirect()->route('getuser');
+            }
+            elseif (Auth::user()->user_type == 2) {
+                return redirect()->route('listtopic');
             }
             elseif (Auth::user()->user_type == 1) {
                 return redirect()->route('gettopic');
