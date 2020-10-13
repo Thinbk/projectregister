@@ -50,4 +50,43 @@ class TopicController extends Controller
         $extendtopic = $this->topic->getTopic();
         return view('student.extend_topic', compact('extendtopic'));
     }
+
+    //teacher
+// list topic
+
+    public function getTopicStudent()
+    {
+        return view('teacher.listtopic', ['topics' => $this->topic->getTopic()]);
+    }
+// gv  duyet dnag ky de tai
+
+    public function getConfirmRegisterTopic()
+    {
+        return view('teacher.confirmregister', ['topics' => $this->topic->getTopic()]);
+    }
+    public function confirmRegisterTopic()
+    {
+
+    }
+// gv duyet gia han de tai
+
+    public function getConfirmExtendTopic()
+    {
+        return view('teacher.confirmextend', ['topics' => $this->topic->getTopic()]);
+    }
+    public function confirmExtendTopic()
+    {
+
+    }
+
+    // gv duyet huy de tai
+
+    public function getConfirmCancelTopic()
+    {
+        return view('teacher.confirmcancel', ['topics' => $this->topic->getTopic()]);
+    }
+    public function confirmCancelTopic()
+    {
+
+    }
 }

@@ -56,3 +56,14 @@ Route::middleware(['checkrole:student'])->prefix('student')->group(function(){
     Route::post('/submitreport', 'SubmitReportController@submitReport')->name('submit');
 
 });
+//lecture
+Route::middleware(['checkrole:teacher'])->prefix('student')->group(function(){
+
+    Route::get('listtopic', 'TopicController@getTopicStudent')->name('listtopic');
+
+    Route::get('confirmregister', 'TopicController@getConfirmRegisterTopic')->name('confirmregister');
+
+    Route::get('confirmextend', 'TopicController@getConfirmExtendTopic')->name('confirmextend');
+
+    Route::get('confirmcancel', 'TopicController@getConfirmCancelTopic')->name('confirmcancel');
+});

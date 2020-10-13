@@ -19,7 +19,6 @@ class CheckRole
      */
     public function handle($request, Closure $next, $role)
     {
-
         if (!Auth::check()) {
             return redirect()->route('login');
         }
@@ -34,6 +33,7 @@ class CheckRole
 
     protected function admin($request, $next) {
         $user = Auth::user();
+//        dd(123);
         // Neu ko dung role thi chuyen ve` login
         if ($user->user_type !== self::ADMIN) {
             return redirect()->route('login');
@@ -48,6 +48,15 @@ class CheckRole
             return redirect()->route('login');
         }
 
+        return $next($request);
+    }
+
+    protected function teacher($request, $next) {
+        $user = Auth::user();
+        // Neu ko dung role thi chuyen ve` login
+        if ($user->user_type !== self::TEACHER) {
+            return redirect()->route('login');
+        }
         return $next($request);
     }
 }
