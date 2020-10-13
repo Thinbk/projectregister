@@ -22,15 +22,15 @@ class SubmitReportController extends Controller
 
     public function submitReport(Request $request)
     {
-//        dd($request);
-//        print_r($request->allFiles());
-//        die;
-//        $file = $request->filesTest;
-//        $file = $request->all();
-//        $file->file->move('upload', $file->getClientOriginalName());
-//        $this->submit->submitReport($file);
+        $submitreport = new SubmitReport();
 
+        $submitreport->description = $request->get('description');
+        $submitreport->topic_id = 1; // chưa lấy dc topic_id nên anh fixx cứng = 1 cho dễ làm
+        $submitreport->file = $request->file('file')->getClientOriginalName();
+        $request->file('file')->move(public_path('/upload'), $submitreport->file);
+        // file nộp kia sẽ vào mục public/upload nhé
 
-        return view('student.submitproject');
+        $submitreport->save();
+        return redirect()->route('submitreport');
     }
 }

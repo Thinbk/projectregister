@@ -23,7 +23,6 @@ class SubmitReport extends Model
     {
         $submitReport = new SubmitReport();
         $submitReport->student_name = $request['student_name'];
-        $submitReport->topic_id = $request['topic_code'];
         $submitReport->student_id = Auth::user()->id;
         $submitReport->file = $request['file'];
         $submitReport->status = 0;

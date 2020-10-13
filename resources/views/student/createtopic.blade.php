@@ -14,6 +14,7 @@
             <div class="col-lg-9">
                 <form action="{{ route('posttopic') }}" method="post">
                     @csrf
+                    @if(isset($topics) == '')
 
                     <div class="form-group row">
                         <label for="inputUser" class="col-sm-2 col-form-label">Tên Đề Tài*</label>
@@ -60,7 +61,9 @@
 
                     <button type="reset" class="btn btn-danger">Hủy</button>
                     <button type="submit" class="btn btn-warning">Submit</button>
-
+                    @else
+                    <p>ban da dang ky roi </p>
+                    @endif
                 </form>
             </div>
         </div>
