@@ -21,6 +21,7 @@ class TopicController extends Controller
     {
         return view('student.createtopic', [
             'lecturers' => $this->lecturer->getAllLecturer(),
+            'topics' => $this->topic->getTopic()
         ]);
     }
     public function postTopic(Request $request)
