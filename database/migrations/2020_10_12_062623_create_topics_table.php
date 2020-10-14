@@ -24,6 +24,7 @@ class CreateTopicsTable extends Migration
             $table->integer('topic_status')->nullable();
             $table->timestamp('date')->nullable();
             $table->integer('cancel_topic_status')->nullable();
+            $table->integer('extend_topic_status')->nullable();
             $table->timestamp('created_at')->nullable();
             $table->timestamp('updated_at')->nullable();
         });

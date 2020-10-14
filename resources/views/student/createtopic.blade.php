@@ -14,7 +14,7 @@
             <div class="col-lg-9">
                 <form action="{{ route('posttopic') }}" method="post">
                     @csrf
-                    @if(isset($topics) == '')
+                    @if($check_create_topic)
 
                     <div class="form-group row">
                         <label for="inputUser" class="col-sm-2 col-form-label">Tên Đề Tài*</label>
@@ -29,13 +29,6 @@
                             <input type="text" name="topic_code" class="form-control" id="topic-code">
                         </div>
                     </div>
-
-{{--                    <div class="form-group row">--}}
-{{--                        <label for="inputTeacher" class="col-sm-2 col-form-label">Tên Giáo Viên Hướng Dẫn</label>--}}
-{{--                        <div class="col-sm-10">--}}
-{{--                            <input type="text" name="teacher" class="form-control" id="inputTeacher">--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
 
                     @if(isset($lecturers) && !empty($lecturers))
                     <div class="form-group row">

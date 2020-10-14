@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
+use Carbon\Carbon;
 
 class User extends Authenticatable
 {
@@ -56,6 +57,20 @@ class User extends Authenticatable
         $addUser->user_type = $request['type'];
 
         $addUser->save();
+
+        // insert table student
+        if ($addUser->user_type == 1) {
+            $addStudent = new Student();
+            $addStudent->user_id = $addUser->id;
+            $addStudent->save();
+        }
+
+        // insert table lecture
+        if ($addUser->user_type == 2) {
+            $addLecture = new Lecturer();
+            $addLecture->user_id = $addUser->id;
+            $addLecture->save();
+        }
     }
 
     public function updateUser($id, $request)
@@ -66,6 +81,7 @@ class User extends Authenticatable
         $updateUser->password = Hash::make($request['password']);
         $updateUser->full_name = $request['full_name'];
         $updateUser->email = $request['email'];
+        $updateUser->updated_at = Carbon::now();
         $updateUser->user_type = 1;
 
         $updateUser->save();
