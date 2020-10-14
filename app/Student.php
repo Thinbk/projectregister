@@ -13,6 +13,7 @@ class Student extends Model
         'school_year',
         'class',
     ];
+    public $timestamps = false;
 
     public function user() {
         return $this->belongsTo('App\User');
