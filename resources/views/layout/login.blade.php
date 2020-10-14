@@ -1,7 +1,7 @@
 @extends('layout.index')
 
 <div class="container">
-    <h2>Login Form</h2>
+    <h2>Đăng nhập</h2>
     <form action="{{ route('postLogin') }}" method="post">
         @csrf
 

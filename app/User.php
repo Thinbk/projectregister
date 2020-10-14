@@ -77,12 +77,12 @@ class User extends Authenticatable
     {
         $updateUser = User::findOrFail($id);
 
-        $updateUser->username = $request['user_name'];
+        $updateUser->username = $request['username'];
         $updateUser->password = Hash::make($request['password']);
         $updateUser->full_name = $request['full_name'];
         $updateUser->email = $request['email'];
         $updateUser->updated_at = Carbon::now();
-        $updateUser->user_type = 1;
+        $updateUser->user_type = $request['type'];
 
         $updateUser->save();
     }

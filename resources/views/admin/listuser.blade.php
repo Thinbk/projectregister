@@ -45,7 +45,7 @@
                                 @endif
                                 <td>
                                     <button class="btn-danger"><a href="{{ route('deleteuser', ['id' => $users->id]) }}" >Xóa</a></button>
-                                    <button class="btn-primary">Cập nhật</button>
+                                    <button class="btn-warning"><a href="{{ route('getupdate', ['id' => $users->id]) }}">Sửa</a></button>
                                 </td>
                             </tr>
                         @endforeach

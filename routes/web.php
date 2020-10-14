@@ -35,6 +35,9 @@ Route::middleware(['checkrole:admin'])->prefix('admin')->group(function(){
     Route::post('/createuser', 'AdminController@createUser')->name('postcreateuser');
 
     Route::get('/deleteuser/{id}', 'AdminController@deleteUser')->name('deleteuser');
+
+    Route::get('/updateuser/{id}', 'AdminController@getUpdateUser')->name('getupdate');
+    Route::post('/updateuser/{id}', 'AdminController@updateUser')->name('update');
 });
 
 //studen

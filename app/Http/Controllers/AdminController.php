@@ -32,9 +32,16 @@ class AdminController extends Controller
 
         return redirect()->route('getuser');
     }
+    public function getUpdateUser($id)
+    {
+        $id = User::findOrFail($id);
+        return view('admin.updateuser', ['id' => $id], compact('id'));
+    }
     public function updateUser(Request $request, $id)
     {
-
+        $updateUser = $request->all();
+        $this->user->updateUser($id, $updateUser);
+        return redirect()->route('getuser');
     }
     public function deleteUser($id)
     {
