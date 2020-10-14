@@ -18,7 +18,7 @@
                     <div class="form-group row">
                         <label for="inputUser" class="col-sm-2 col-form-label">Tên Đăng Nhập*</label>
                         <div class="col-sm-10">
-                            <input type="text" name="user_name" class="form-control" id="inputUser">
+                            <input type="text" name="username" class="form-control" id="inputUser">
                         </div>
                     </div>
 
@@ -31,7 +31,6 @@
 
                     <div class="form-group row">
                         <label for="inputFullName" class="col-sm-2 col-form-label">Họ Và Tên*</label>
-
                         <div class="col-sm-10">
                             <input type="text" name="full_name" class="form-control" id="inputFullName">
                         </div>

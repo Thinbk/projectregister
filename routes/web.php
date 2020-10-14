@@ -21,6 +21,8 @@ Route::get('/', function () {
 Route::get('/login','AuthController@getLogin')->name('login');
 Route::post('/login','AuthController@login')->name('postLogin');
 Route::get('/logout','AuthController@logout')->name('logout');
+Route::get('/signup','AuthController@getSignup')->name('getsignup');
+Route::post('/signup','AuthController@signup')->name('signup');
 
 // admin
 //Route::prefix('admin')->group(function (){

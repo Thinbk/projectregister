@@ -38,8 +38,10 @@
                                 <td></td>
                                 @if($users->user_type == 1 )
                                     <td>Sinh viên</td>
-                                @else
+                                @elseif($users->user_type == 2 )
                                     <td>Giáo viên</td>
+                                @else
+                                    <td>Admin</td>
                                 @endif
                                 <td>
                                     <button class="btn-danger"><a href="{{ route('deleteuser', ['id' => $users->id]) }}" >Xóa</a></button>

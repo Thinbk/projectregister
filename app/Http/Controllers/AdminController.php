@@ -29,6 +29,7 @@ class AdminController extends Controller
         $user = $request->all();
 
         $this->user->createUser($user);
+
         return redirect()->route('getuser');
     }
     public function updateUser(Request $request, $id)

@@ -15,6 +15,9 @@
             <input type="password" name="password" class="form-control" id="inputPassword" placeholder="Mật khẩu">
         </div>
 
+        <a href="{{ route('getsignup') }}">Đăng ký tài khoản</a>
+        <br>
+
         <button type="submit" class="btn btn-primary">Submit</button>
 
     </form>

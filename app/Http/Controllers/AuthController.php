@@ -2,12 +2,32 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
     //
+    protected $user;
+
+    public function __construct(User $user)
+    {
+        $this->user = $user;
+    }
+
+    public function getSignup()
+    {
+        return view('layout.signup');
+    }
+    public function signup(Request $request)
+    {
+        $user = $request->all();
+        $this->user->createUser($user);
+//        dd($user);
+
+        return redirect('/login');
+    }
     public function getLogin()
     {
         return view('layout.login');
