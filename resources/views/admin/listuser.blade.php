@@ -31,11 +31,11 @@
                         @foreach ($user as $index => $users)
                             <tr>
                                 <td>{{ $index+1 }}</td>
-                                <td>{{ $users->username }}</td>
-                                <td>{{ $users->email }}</td>
                                 <td>{{ $users->full_name }}</td>
+                                <td>{{ $users->email }}</td>
+                                <td>{{ $users->username }}</td>
                                 <td>{{ \Carbon\Carbon::parse($users->created_at)->format('d/m/Y') }}</td>
-                                <td></td>
+                                <td>{{ \Carbon\Carbon::parse($users->updated_at)->format('d/m/Y') }}</td>
                                 @if($users->user_type == 1 )
                                     <td>Sinh viên</td>
                                 @elseif($users->user_type == 2 )
