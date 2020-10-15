@@ -29,46 +29,43 @@ Route::post('/signup','AuthController@signup')->name('signup');
 Route::middleware(['checkrole:admin'])->prefix('admin')->group(function(){
 
     Route::get('/getuser', 'AdminController@getUser')->name('getuser');
-
     Route::get('/createuser','AdminController@create')->name('getcreateuser');
-
     Route::post('/createuser', 'AdminController@createUser')->name('postcreateuser');
-
     Route::get('/deleteuser/{id}', 'AdminController@deleteUser')->name('deleteuser');
-
     Route::get('/updateuser/{id}', 'AdminController@getUpdateUser')->name('getupdate');
     Route::post('/updateuser/{id}', 'AdminController@updateUser')->name('update');
+    Route::get('/information', 'AdminController@getInfor')->name('getinforadmin');
+    Route::get('/editinformation', 'AdminController@editInfor')->name('inforadmin');
+    Route::post('/updateinformation', 'AdminController@updateInfor')->name('updateinforadmin');
 });
 
 //studen
-//
 //Ro
 
 Route::middleware(['checkrole:student'])->prefix('student')->group(function(){
 
     Route::get('/createtopic', 'StudentController@getTopic')->name('gettopic');
     Route::post('/createtopic', 'StudentController@postTopic')->name('posttopic');
-
     Route::get('/status', 'StudentController@statusTopic')->name('statustopic');
-
     Route::get('/canceltopic', 'StudentController@getcancelTopic')->name('getcancel');
     Route::get('/canceltopic/{id}', 'StudentController@cancelTopic')->name('canceltopic');
-
     Route::get('/extendtopic', 'StudentController@extendTopic')->name('extendTopic');
     Route::post('/extendtopic', 'StudentController@postExtendTopic')->name('postExtendTopic');
-
     Route::get('/submitreport', 'StudentController@getFormSubmit')->name('submitreport');
     Route::post('/submitreport', 'StudentController@submitReport')->name('submit');
+    Route::get('/information', 'StudentController@getInfor')->name('getinforstudent');
+    Route::get('/editinformation', 'StudentController@editInfor')->name('inforstudent');
+    Route::post('/updateinformation', 'StudentController@updateInfor')->name('updateinforstudent');
 
 });
 //lecture
-Route::middleware(['checkrole:teacher'])->prefix('student')->group(function(){
+Route::middleware(['checkrole:teacher'])->prefix('lecture')->group(function(){
 
     Route::get('listtopic', 'LecturerController@getTopicStudent')->name('listtopic');
-
     Route::get('confirmregister', 'LecturerController@getConfirmRegisterTopic')->name('confirmregister');
-
     Route::get('confirmextend', 'LecturerController@getConfirmExtendTopic')->name('confirmextend');
-
     Route::get('confirmcancel', 'LecturerController@getConfirmCancelTopic')->name('confirmcancel');
+    Route::get('/information/', 'LecturerController@getInfor')->name('getinforlecture');
+    Route::get('/editinformation', 'LecturerController@editInfor')->name('inforlecture');
+    Route::post('/updateinformation', 'LecturerController@updateInfor')->name('updateinforlecture');
 });

@@ -5,24 +5,52 @@ namespace App\Http\Controllers;
 use App\Lecturer;
 use App\SubmitReport;
 use App\Topic;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Validator;
 
 class StudentController extends Controller
 {
     //
     protected $topic;
     protected $lecturer;
+    protected $user;
 
     public function __construct(
         Topic $topic,
         Lecturer $lecturer,
-        SubmitReport $submit
+        SubmitReport $submit,
+        User $user
     )
     {
         $this->topic = $topic;
         $this->lecturer = $lecturer;
         $this->submit = $submit;
+        $this->user = $user;
+    }
+    public function getInfor()
+    {
+        $infor = Auth::user();
+        return view('student.information', ['infor' => $infor]);
+    }
+    public function editInfor()
+    {
+        $editinfor = Auth::user();
+        return view('student.updateinformation', ['editinfor' => $editinfor]);
+    }
+    public function updateInfor(Request $request)
+    {
+        $validates = Validator::make($request->all(), [
+            'username' => 'required|unique:users|min:3|max:50',
+            'email' => 'required|email|unique:users',
+        ], [
+            'username.required' => 'khong duoc de trong',
+        ]);
+
+        $updateinfor = $request->all();
+        $this->user->updateStudent($updateinfor, Auth::user()->id);
+        return redirect()->route('getinforstudent');
     }
     public function getTopic()
     {
