@@ -27,7 +27,7 @@
                         <td>{{ $topic->name }}</td>
                         <td>{{ \Carbon\Carbon::parse($topic->created_at)->format('d/m/Y') }}</td>
                         <td>
-                            <button class="btn-warning">Xác nhận hủy</button>
+                            <button class="btn-warning"><a href="{{ route('postconfirmcancel', ['id' => $topic->id]) }}">Xác nhận hủy</a></button>
                         </td>
                     </tr>
                 @endforeach

@@ -46,37 +46,40 @@ class LecturerController extends Controller
     //list topic
     public function getTopicStudent()
     {
-        return view('teacher.listtopic', ['topics' => $this->topic->getTopic()]);
+        return view('teacher.listtopic', ['topics' => $this->topic->getTopicStudent()]);
     }
 // gv  duyet dnag ky de tai
 
     public function getConfirmRegisterTopic()
     {
-        return view('teacher.confirmregister', ['topics' => $this->topic->getTopic()]);
+        return view('teacher.confirmregister', ['topics' => $this->topic->getTopicStudent()]);
     }
-    public function confirmRegisterTopic(Request $request)
+    public function confirmRegisterTopic($id)
     {
-
+        $this->topic->confirmRegisterTopic($id);
+        return redirect()->route('confirmextend');
     }
 // gv duyet gia han de tai
 
     public function getConfirmExtendTopic()
     {
-        return view('teacher.confirmextend', ['topics' => $this->topic->getTopic()]);
+        return view('teacher.confirmextend', ['topics' => $this->topic->getTopicStudent()]);
     }
-    public function confirmExtendTopic()
+    public function confirmExtendTopic($id)
     {
-
+        $this->topic->cofnirmExtendTopic($id);
+        return redirect()->route('confirmextend');
     }
 
     // gv duyet huy de tai
 
     public function getConfirmCancelTopic()
     {
-        return view('teacher.confirmcancel', ['topics' => $this->topic->getTopic()]);
+        return view('teacher.confirmcancel', ['topics' => $this->topic->getTopicStudent()]);
     }
-    public function confirmCancelTopic()
+    public function confirmCancelTopic($id)
     {
-
+        $this->topic->cofnirmCancelTopic($id);
+        return redirect()->route('confirmcancel');
     }
 }
