@@ -56,6 +56,10 @@ class Topic extends Model
     {
         return $topic = Topic::all();
     }
+    public function getTopicStudent()
+    {
+        return Topic::where('lecturer_id', Auth::user()->lecturer->id)->get();
+    }
     public function checkCreateTopic($student_id)
     {
         return $topic = Topic::all()->where('student_id','=', $student_id)->isEmpty();
@@ -76,8 +80,9 @@ class Topic extends Model
     {
         return DB::table('topics')->where('id', $id)->update(['cancel_topic_status' => 2]);
     }
+
     //Mặc định là 0 - chưa duyệt, 1 - đã duyệt
-    public function cofnirmRegisterTopic($id)
+    public function confirmRegisterTopic($id)
     {
         return DB::table('topics')->where('id', $id)->update(['topic_status' => 1]);
     }

@@ -96,4 +96,34 @@ class User extends Authenticatable
         $deleteUser = User::findOrFail($id);
         $deleteUser->delete();
     }
+    public function updateInfor($request, $id)
+    {
+        $updateUser = User::findOrFail($id);
+        $updateUser->username = $request['username'];
+        $updateUser->password = Hash::make($request['password']);
+        $updateUser->full_name = $request['full_name'];
+        $updateUser->email = $request['email'];
+        $updateUser->date_of_birth = $request['date_of_birth'];
+        $updateUser->phone_number = $request['phone_number'];
+        $updateUser->save();
+    }
+    public function updateStudent($request, $id)
+    {
+        $updateUser = User::findOrFail($id);
+
+        $updateUser->username = $request['username'];
+        $updateUser->password = Hash::make($request['password']);
+        $updateUser->full_name = $request['full_name'];
+        $updateUser->email = $request['email'];
+        $updateUser->date_of_birth = $request['date_of_birth'];
+        $updateUser->phone_number = $request['phone_number'];
+        $updateUser->save();
+        $student = Student::where('user_id', $id)->first();
+
+        $updateStudent = Student::findOrFail($student->id);
+        $updateStudent->student_code = $request['student_code'];
+        $updateStudent->school_year = $request['school_year'];
+        $updateStudent->class = $request['class'];
+        $updateStudent->save();
+    }
 }
