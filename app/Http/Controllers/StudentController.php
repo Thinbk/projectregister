@@ -14,11 +14,7 @@ class StudentController extends Controller
     protected $topic;
     protected $lecturer;
 
-    public function __construct(
-        Topic $topic,
-        Lecturer $lecturer,
-        SubmitReport $submit
-    )
+    public function __construct(Topic $topic, Lecturer $lecturer, SubmitReport $submit)
     {
         $this->topic = $topic;
         $this->lecturer = $lecturer;

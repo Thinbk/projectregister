@@ -44,8 +44,10 @@ class Topic extends Model
         $createtopic->student_id = $request->student_id;
         $createtopic->date = $request->date;
         $createtopic->topic_status = 0;
-        $createtopic->extend_topic_status = 0;
-        $createtopic->cancel_topic_status = 0;
+        /* 2 dòng phía dưới không cần thêm vào anh nhé,
+        vì chỉ khi nào sinh viên gia hạn đề tài hoặc xin hủy thì mới trong trạng thái chờ duyệt */
+        /*$createtopic->extend_topic_status = 0;
+        $createtopic->cancel_topic_status = 0;*/
 
         $createtopic->save();
     }

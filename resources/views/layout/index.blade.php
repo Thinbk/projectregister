@@ -14,6 +14,7 @@
     <!-- Add custom CSS here -->
     <link href="{{ asset('css/sb-admin.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('font-awesome/css/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/mystylesheet.css') }}"/>
     <!-- Page Specific CSS -->
 </head>
 
@@ -22,8 +23,10 @@
 @yield('content')
 
 <!-- JavaScript -->
-<script src="{{ asset('js/jquery-1.10.2.js') }}"></script>
+<script src="{{ asset('js/jquery-3.4.1.min.js') }}"></script>
+<script src="{{ asset('js/jquery.validate.min.js') }}"></script>
 <script src="{{ asset('js/bootstrap.js') }}"></script>
+<script src="{{ asset('js/script.js') }}"></script>
 
 <!-- Page Specific Plugins -->
 <script src="{{ asset('http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js') }}"></script>

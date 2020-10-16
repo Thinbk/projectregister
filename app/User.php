@@ -54,12 +54,16 @@ class User extends Authenticatable
         $addUser->password = Hash::make($request['password']);
         $addUser->full_name = $request['full_name'];
         $addUser->email = $request['email'];
-        $addUser->user_type = $request['type'];
+        //$addUser->user_type = $request['type'];
+        $addUser->user_type = 1; //user_type mặc định là 1, r admin sẽ phân quyền lại
 
         $addUser->save();
 
+        $addStudent = new Student();
+        $addStudent->user_id = $addUser->id;
+        $addStudent->save();
         // insert table student
-        if ($addUser->user_type == 1) {
+        /*if ($addUser->user_type == 1) {
             $addStudent = new Student();
             $addStudent->user_id = $addUser->id;
             $addStudent->save();
@@ -70,7 +74,7 @@ class User extends Authenticatable
             $addLecture = new Lecturer();
             $addLecture->user_id = $addUser->id;
             $addLecture->save();
-        }
+        }*/
     }
 
     public function updateUser($id, $request)
