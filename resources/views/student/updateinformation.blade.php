@@ -1,4 +1,4 @@
-@extends('admin.navbar')
+@extends('student.navbar')
 
 <div id="wrapper">
     <div id="page-wrapper">
