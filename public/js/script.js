@@ -65,7 +65,7 @@ $(document).ready(function(){
         be check xong xuôi r trả response sang fe làm gì tiếp theo (code dưới là ví dụ ở bài cũ của em),
         tùy thuộc vào a validate ở be ntn thì chỉnh sửa lại */
         if(error_status === false){
-            event.preventDefault();
+            // event.preventDefault();
             console.log('Done!');
             /*$.ajax({
                 type: "POST",
