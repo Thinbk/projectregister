@@ -25,9 +25,14 @@
                     <tr>
                         <td> {{ $index+1 }} </td>
                         <td>{{ $topic->name }}</td>
+{{--                        <td>{{ $topic->cancel_topic_status }}</td>--}}
                         <td>{{ \Carbon\Carbon::parse($topic->created_at)->format('d/m/Y') }}</td>
                         <td>
+                            @if($topic->cancel_topic_status == 2)
+                                Đã Hủy
+                            @else
                             <button class="btn-warning"><a href="{{ route('postconfirmcancel', ['id' => $topic->id]) }}">Xác nhận hủy</a></button>
+                            @endif
                         </td>
                     </tr>
                 @endforeach

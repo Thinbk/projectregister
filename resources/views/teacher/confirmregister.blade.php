@@ -25,9 +25,14 @@
                     <tr>
                         <td> {{ $index+1 }} </td>
                         <td>{{ $topic->name }}</td>
+{{--                        <td>{{ $topic->topic_status }}</td>--}}
                         <td>{{ \Carbon\Carbon::parse($topic->created_at)->format('d/m/Y') }}</td>
                         <td>
+                            @if($topic->topic_status == 1)
+                                Đã Duyệt
+                            @else
                             <button class="btn-warning"><a href="{{ route('postconfirmregister',['id' => $topic->id]) }}">Xác nhận </a></button>
+                            @endif
                         </td>
                     </tr>
                 @endforeach
