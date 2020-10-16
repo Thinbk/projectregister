@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Student\CreateTopicRequest;
+use App\Http\Requests\Student\UpdateInforRequest;
 use App\Lecturer;
 use App\SubmitReport;
 use App\Topic;
 use App\User;
-use Illuminate\Http\Request;
+use GuzzleHttp\Psr7\Request;
 use Illuminate\Support\Facades\Auth;
 use Validator;
 
@@ -34,7 +36,7 @@ class StudentController extends Controller
         $editinfor = Auth::user();
         return view('student.updateinformation', ['editinfor' => $editinfor]);
     }
-    public function updateInfor(Request $request)
+    public function updateInfor(UpdateInforRequest $request)
     {
         $validates = Validator::make($request->all(), [
             'username' => 'required|unique:users|min:3|max:50',
@@ -58,7 +60,8 @@ class StudentController extends Controller
     }
     public function postTopic(Request $request)
     {
-        $this->topic->createTopic($request);
+        $postTopic = $request->all();
+        $this->topic->createTopic($postTopic);
         return redirect()->route('gettopic');
     }
     public function statusTopic()
