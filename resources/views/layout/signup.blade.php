@@ -2,32 +2,37 @@
 
 <div class="container">
     <h2>Đăng ký thành viên</h2>
-    <form action="{{ route('signup') }}" method="post">
+    <form class="form-signup" action="{{ route('signup') }}" method="post">
         @csrf
 
         <div class="form-group">
-            <label for="inputUsername">Tên Đăng Nhập</label>
-            <input type="text" name="username" class="form-control" id="inputUsername"
+            <label for="inputUsername">Tên Đăng Nhập*</label>
+            <input type="text" name="username" class="form-control username" id="inputUsername"
                    placeholder="Nhập tên">
-        </div>
-
-        <div class="form-group">
-            <label for="inputFullName">Họ Và Tên*</label>
-            <input type="text" name="full_name" class="form-control" id="inputFullName" placeholder="Nhập họ và tên">
-        </div>
-
-        <div class="form-group">
-            <label for="inputEmail">Email</label>
-            <input type="email" name="email" class="form-control" id="inputEmail"
-                   placeholder="Nhập email">
+            <p class="error-msg"></p>
         </div>
 
         <div class="form-group">
             <label for="inputPassword">Mật Khẩu*</label>
-            <input type="password" name="password" class="form-control" id="inputPassword"
+            <input type="password" name="password" class="form-control password" id="inputPassword"
                    placeholder="Nhập mật khẩu">
+            <p class="error-msg"></p>
         </div>
 
+        <div class="form-group">
+            <label for="inputFullName">Họ Và Tên*</label>
+            <input type="text" name="full_name" class="form-control full-name" id="inputFullName" placeholder="Nhập họ và tên">
+            <p class="error-msg"></p>
+        </div>
+
+        <div class="form-group">
+            <label for="inputEmail">Email</label>
+            <input type="email" name="email" class="form-control email" id="inputEmail"
+                   placeholder="Nhập email">
+            <p class="error-msg"></p>
+        </div>
+
+        {{-- Cục bên dưới ko cần, bỏ --}}
         <div class="form-group">
             <label for="inputRole">Vai trò</label>
             <select name="type" class="form-control">
