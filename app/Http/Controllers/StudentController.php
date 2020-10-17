@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Student\CreateTopicRequest;
+use App\Http\Requests\Student\SubmitReportRequest;
 use App\Http\Requests\Student\UpdateInforRequest;
 use App\Lecturer;
 use App\SubmitReport;
 use App\Topic;
 use App\User;
-use GuzzleHttp\Psr7\Request;
 use Illuminate\Support\Facades\Auth;
 use Validator;
 
@@ -38,13 +38,6 @@ class StudentController extends Controller
     }
     public function updateInfor(UpdateInforRequest $request)
     {
-        $validates = Validator::make($request->all(), [
-            'username' => 'required|unique:users|min:3|max:50',
-            'email' => 'required|email|unique:users',
-        ], [
-            'username.required' => 'khong duoc de trong',
-        ]);
-
         $updateinfor = $request->all();
         $this->user->updateStudent($updateinfor, Auth::user()->id);
         return redirect()->route('getinforstudent');
@@ -58,7 +51,7 @@ class StudentController extends Controller
             'check_create_topic' => $this->topic->checkCreateTopic($student_id)
         ]);
     }
-    public function postTopic(Request $request)
+    public function postTopic(CreateTopicRequest $request)
     {
         $postTopic = $request->all();
         $this->topic->createTopic($postTopic);
@@ -91,15 +84,15 @@ class StudentController extends Controller
     }
     public function getFormSubmit()
     {
-        return view('student.submitproject');
+        return view('student.submitproject', ['topics' => $this->topic->getIdtopic()]);
     }
 
-    public function submitReport(Request $request)
+    public function submitReport(SubmitReportRequest $request)
     {
         $submitreport = new SubmitReport();
 
         $submitreport->description = $request->get('description');
-        $submitreport->topic_id = 1; // chưa lấy dc topic_id nên anh fixx cứng = 1 cho dễ làm
+        $submitreport->topic_id = $request->get('topic_id');
         $submitreport->file = $request->file('file')->getClientOriginalName();
         $request->file('file')->move(public_path('/upload'), $submitreport->file);
         // file nộp kia sẽ vào mục public/upload nhé

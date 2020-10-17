@@ -9,12 +9,10 @@
                 </ol>
             </div>
         </div><!-- /.row -->
-
         <div class="row">
             <div class="col-lg-9">
                 <form action="{{ route('submit') }}" method="post" enctype="multipart/form-data">
                     @csrf
-
                     <div class="form-group row">
                         <label for="inputUser" class="col-sm-2 col-form-label">Miêu tả</label>
                         <div class="col-sm-10">
@@ -22,8 +20,10 @@
                         </div>
                     </div>
 
+                    <input type="hidden" name="topic_id" value="{{ isset($topics[0]->id) ? $topics[0]->id : '' }}">
+
                     <div class="form-group row">
-                        <label for="inputUser" class="col-sm-2 col-form-label">File báo cáo</label>
+                        <label class="col-sm-2 col-form-label">File báo cáo</label>
                         <div class="col-sm-10">
                             <input name="file" type="file">
                         </div>

@@ -6,6 +6,7 @@ use App\Http\Requests\Admin\CreateUserRequest;
 use App\Http\Requests\Admin\UpdateInforRequest;
 use App\Http\Requests\Admin\UpdateUserRequest;
 use App\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Validator;
 
@@ -29,7 +30,7 @@ class AdminController extends Controller
         $editinfor =  User::where('id', Auth::user()->id)->get();
         return view('admin.updateinformation', ['editinfor' => $editinfor]);
     }
-    public function updateInfor(UpdateInforRequest $request)
+    public function updateInfor(Request $request)
     {
         $updateinfor = $request->all();
         $this->user->updateInfor($updateinfor, Auth::user()->id);

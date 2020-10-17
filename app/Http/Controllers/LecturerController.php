@@ -32,13 +32,6 @@ class LecturerController extends Controller
 
     public function updateInfor(UpdateInforRequest $request)
     {
-        $validates = Validator::make($request->all(), [
-            'username' => 'required|unique:users|min:3|max:50',
-            'email' => 'required|email|unique:users',
-        ], [
-            'username.required' => 'khong duoc de trong',
-        ]);
-
         $updateinfor = $request->all();
         $this->user->updateInfor($updateinfor, Auth::user()->id);
         return redirect()->route('getinforlecture');

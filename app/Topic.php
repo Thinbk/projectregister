@@ -38,11 +38,11 @@ class Topic extends Model
     {
         $createtopic = new Topic();
 
-        $createtopic->name = $request->topic_name;
-        $createtopic->topic_code = $request->topic_code;
-        $createtopic->lecturer_id = $request->lecturers;
-        $createtopic->student_id = $request->student_id;
-        $createtopic->date = $request->date;
+        $createtopic->name = $request['name'];
+        $createtopic->topic_code = $request['topic_code'];
+        $createtopic->lecturer_id = $request['lecturer_id'];
+        $createtopic->student_id = $request['student_id'];
+        $createtopic->date = $request['date'];
         $createtopic->topic_status = 0;
         /* 2 dòng phía dưới không cần thêm vào anh nhé,
         vì chỉ khi nào sinh viên gia hạn đề tài hoặc xin hủy thì mới trong trạng thái chờ duyệt */
@@ -54,11 +54,15 @@ class Topic extends Model
 
     public function getTopic()
     {
-        return $topic = Topic::all();
+        return $topic = Topic::where('student_id', Auth::user()->student->user_id)->get();
     }
     public function getTopicStudent()
     {
         return Topic::where('lecturer_id', Auth::user()->lecturer->id)->get();
+    }
+    public function getIdtopic()
+    {
+        return Topic::where('student_id', Auth::user()->student->id)->get();
     }
     public function checkCreateTopic($student_id)
     {

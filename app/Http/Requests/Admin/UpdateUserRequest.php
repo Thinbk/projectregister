@@ -27,20 +27,16 @@ class UpdateUserRequest extends FormRequest
             'username'   => 'required',
             'password'   => 'required',
             'full_name'   => 'required',
-            'date_of_birth' => 'required',
             'email' => 'required',
-            'phone_number' => 'required',
         ];
     }
     public function messages()
     {
         return [
-            'name.required' => 'Không được để trống',
-            'password.required' => 'Không được để trống',
-            'full_name.required' => 'Không được để trống',
-            'date_of_birth.required' => 'Không được để trống',
-            'email.required' => 'Không được để trống',
-            'phone_number.required' => 'Không được để trống',
+            'username.required' => 'Không được để trống1',
+            'password.required' => 'Không được để trống2',
+            'full_name.required' => 'Không được để trống3',
+            'email.required' => 'Không được để trống5',
         ];
     }
 }

@@ -25,14 +25,12 @@ class SubmitReportRequest extends FormRequest
     {
         return [
             //
-            'file' => 'required',
             'description' => 'required',
         ];
     }
     public function messages()
     {
         return [
-            'file.required' => 'Không được để trống',
             'description.required' => 'Không được để trống',
         ];
     }

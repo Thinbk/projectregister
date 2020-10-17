@@ -24,11 +24,9 @@ class CreateTopicRequest extends FormRequest
     public function rules()
     {
         return [
-            //
             'name' => 'required',
             'topic_code' => 'required',
-            'lecturer_id' => 'required',
-            'date'=> 'required',
+            'date' => 'required',
         ];
     }
     public function messages()
@@ -36,7 +34,6 @@ class CreateTopicRequest extends FormRequest
         return [
             'name.required' => 'Không được để trống',
             'topic_code.required' => 'Không được để trống',
-            'lecturer_id.required' => 'Không được để trống',
             'date.required' => 'Không được để trống',
         ];
     }
