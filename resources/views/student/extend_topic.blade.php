@@ -19,7 +19,7 @@
                         <th width="5%">STT</th>
                         <th width="40%">Tiêu đề</th>
                         <th width="25%">Giáo viên hướng dẫn</th>
-                        <th width="15%">Ngày gửi</th>
+                        <th width="15%">Ngày gia hạn</th>
                         <th width="15%"></th>
                     </tr>
                     </thead>
@@ -29,9 +29,22 @@
                             <td>{{ $index+1 }}</td>
                             <td>{{ $extendtopic->name }}</td>
                             <td>{{ $extendtopic->lecturer->user->full_name }}</td>
-                            <td>{{ \Carbon\Carbon::parse($extendtopic->created_at)->format('d/m/Y') }}</td>
                             <td>
-                                <button class="btn-warning"> Gia Hạn đề tài</button>
+                                @if($extendtopic->extend_topic_status == '')
+                                    {{ \Carbon\Carbon::parse($extendtopic->date)->format('d/m/Y') }}
+                                @elseif($extendtopic->extend_topic_status == 1)
+                                    {{ \Carbon\Carbon::parse($extendtopic->extend_date)->format('d/m/Y') }} (chờ duyệt)
+                                @else
+                                    {{ \Carbon\Carbon::parse($extendtopic->extend_date)->format('d/m/Y') }} (đã duyệt)
+                                @endif
+                            </td>
+                            <td>
+                                @if($extendtopic->extend_topic_status == '')
+                                    <button class="btn-warning"><a href="{{ route('getform') }}">Gia Hạn đề tài</a>
+                                    </button>
+                                @else
+                                    <p> Đã gia hạn </p>
+                                @endif
                             </td>
                         </tr>
                     @endforeach

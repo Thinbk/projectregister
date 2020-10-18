@@ -54,7 +54,7 @@ class Topic extends Model
 
     public function getTopic()
     {
-        return $topic = Topic::where('student_id', Auth::user()->student->user_id)->get();
+        return $topic = Topic::where('student_id', Auth::user()->student->id)->get();
     }
     public function getTopicStudent()
     {
@@ -73,6 +73,14 @@ class Topic extends Model
     {
         //trạng thái hủy có 3 TH: 0 - chưa hủy, 1 - đã hủy và chờ duyệt, 2 - đã duyệt hủy
         return DB::table('topics')->where('id', $id)->update(['cancel_topic_status' => 1]); // chỗ này sửa lại là 1 nhé
+    }
+    // mac dinh la null, xin gia han la 1, duyet gia han 2
+    public function postExtendTopic($id, $request)
+    {
+        $extend = Topic::findOrFail($id);
+        $extend->extend_date = $request['extend_date'];
+        $extend->extend_topic_status = 1;
+        $extend->save();
     }
 
     public function cofnirmExtendTopic($id)

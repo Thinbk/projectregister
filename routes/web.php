@@ -40,7 +40,6 @@ Route::middleware(['checkrole:admin'])->prefix('admin')->group(function(){
 });
 
 //studen
-//Ro
 
 Route::middleware(['checkrole:student'])->prefix('student')->group(function(){
 
@@ -56,6 +55,8 @@ Route::middleware(['checkrole:student'])->prefix('student')->group(function(){
     Route::get('/information', 'StudentController@getInfor')->name('getinforstudent');
     Route::get('/editinformation', 'StudentController@editInfor')->name('inforstudent');
     Route::post('/updateinformation', 'StudentController@updateInfor')->name('updateinforstudent');
+    Route::get('/getform', 'StudentController@getExtendTopic')->name('getform');
+    Route::post('/getform', 'StudentController@postExtendTopic')->name('postform');
 
 });
 //lecture
@@ -67,7 +68,7 @@ Route::middleware(['checkrole:teacher'])->prefix('lecture')->group(function(){
     Route::get('confirmregister/{id}', 'LecturerController@confirmRegisterTopic')->name('postconfirmregister');
 
     Route::get('confirmextend', 'LecturerController@getConfirmExtendTopic')->name('confirmextend');
-    Route::get('confirmextend/{id}', 'LecturerController@getConfirmExtendTopic')->name('postconfirmextend');
+    Route::get('confirmextend/{id}', 'LecturerController@confirmExtendTopic')->name('postconfirmextend');
 
     Route::get('confirmcancel', 'LecturerController@getConfirmCancelTopic')->name('confirmcancel');
     Route::get('confirmcancel/{id}', 'LecturerController@confirmCancelTopic')->name('postconfirmcancel');

@@ -9,6 +9,7 @@ use App\Lecturer;
 use App\SubmitReport;
 use App\Topic;
 use App\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Validator;
 
@@ -78,9 +79,16 @@ class StudentController extends Controller
         $extendtopic = $this->topic->getTopic();
         return view('student.extend_topic', compact('extendtopic'));
     }
-    public function postExtendTopic()
+    public function getExtendTopic()
     {
-
+        $extendtopic = $this->topic->getTopic();
+        return view('student.formextendtopic',compact('extendtopic'));
+    }
+    public function postExtendTopic(Request $request)
+    {
+        $postextend = $request->all();
+        $this->topic->postExtendTopic($this->topic->getTopic()[0]->id, $postextend);
+        return redirect()->route('extendTopic');
     }
     public function getFormSubmit()
     {

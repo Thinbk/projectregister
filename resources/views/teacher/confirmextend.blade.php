@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-lg-12sdf">
                 <ol class="breadcrumb">
-                    <li class="active"><i class="fa fa-dashboard"></i> Duyệt gia hạn đề tài </li>
+                    <li class="active"><i class="fa fa-dashboard"></i> Duyệt gia hạn đề tài</li>
                 </ol>
             </div>
         </div><!-- /.row -->
@@ -27,7 +27,13 @@
                         <td>{{ $topic->name }}</td>
                         <td>{{ \Carbon\Carbon::parse($topic->created_at)->format('d/m/Y') }}</td>
                         <td>
-                            <button class="btn-warning">Xác nhận</button>
+                            @if($topic->extend_topic_status == 2)
+                                <p>Đã Duyệt</p>
+                            @else
+                                <button class="btn-warning"><a
+                                        href="{{ route('postconfirmextend', ['id' => $topic->id ]) }}">Xác nhận</a>
+                                </button>
+                            @endif
                         </td>
                     </tr>
                 @endforeach
