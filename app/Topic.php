@@ -54,7 +54,9 @@ class Topic extends Model
 
     public function getTopic()
     {
-        return $topic = Topic::where('student_id', Auth::user()->student->id)->get();
+        return $topic = Topic::where('student_id', Auth::user()->student->id)
+            ->where('cancel_topic_status','<', 2) //cho cai cancel topic mat di
+            ->get();
     }
     public function getTopicStudent()
     {
@@ -66,7 +68,9 @@ class Topic extends Model
     }
     public function checkCreateTopic($student_id)
     {
-        return $topic = Topic::all()->where('student_id','=', $student_id)->isEmpty();
+        return $topic = Topic::all()
+            ->where('student_id','=', $student_id)
+            ->isEmpty();
     }
 
     public function cancelTopic($id)
