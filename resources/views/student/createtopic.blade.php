@@ -14,7 +14,7 @@
             <div class="col-lg-9">
                 <form action="" method="post">
                     @csrf
-                    @if($check_create_topic)
+                    @if(!isset($topics[0]->cancel_topic_status))
                         <div class="form-group row">
                             <label for="inputUser" class="col-sm-2 col-form-label">Tên Đề Tài*</label>
                             <div class="col-sm-10">
