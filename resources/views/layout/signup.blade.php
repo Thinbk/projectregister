@@ -41,7 +41,7 @@
             </select>
         </div>
 
+        <p>Đã có tài khoản, <a href="{{route('login')}}">đăng nhập</a></p>
         <button type="submit" class="btn btn-primary">Đăng ký</button>
-
     </form>
 </div>

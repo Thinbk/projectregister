@@ -12,8 +12,7 @@ $(document).ready(function(){
             error_status = true;
             username_elem_signin.addClass('error');
             username_elem_signin.parent().find($('p.error-msg')).text('Username không được để trống');
-            username_elem_signin.parent().find($('label.error')).text('');
-            username_elem_signin.parent().find($('label.error')).css('display','none');
+            username_elem_signin.parent().find($('label.error')).text('').css('display','none');
         } else {
             error_status = false;
             username_elem_signin.removeClass('error');
@@ -25,8 +24,7 @@ $(document).ready(function(){
             error_status = true;
             password_elem_signin.addClass('error');
             password_elem_signin.parent().find($('p.error-msg')).text('Password không được để trống');
-            password_elem_signin.parent().find($('label.error')).text('');
-            password_elem_signin.parent().find($('label.error')).css('display','none');
+            password_elem_signin.parent().find($('label.error')).text('').css('display','none');
         } else {
             error_status = false;
             password_elem_signin.removeClass('error');
@@ -97,7 +95,7 @@ $(document).ready(function(){
         },
         messages: {
             "username": {
-                required: "User name không được để trống"
+                required: "Username không được để trống"
             },
             "password": {
                 required: "Password không được để trống"
@@ -114,14 +112,12 @@ $(document).ready(function(){
             error_status = true;
             username_elem.addClass('error');
             username_elem.parent().find($('p.error-msg')).text('Username không được để trống');
-            username_elem.parent().find($('label.error')).text('');
-            username_elem.parent().find($('label.error')).css('display','none');
+            username_elem.parent().find($('label.error')).text('').css('display','none');
         } else if(!regular_username.test(username_elem.val())) {
             error_status = true;
             username_elem.addClass('error');
             username_elem.parent().find($('p.error-msg')).text('Username sai định dạng');
-            username_elem.parent().find($('label.error')).text('');
-            username_elem.parent().find($('label.error')).css('display','none');
+            username_elem.parent().find($('label.error')).text('').css('display','none');
         } else {
             error_status = false;
             username_elem.removeClass('error');
@@ -133,14 +129,12 @@ $(document).ready(function(){
             error_status = true;
             password_elem.addClass('error');
             password_elem.parent().find($('p.error-msg')).text('Password không được để trống');
-            password_elem.parent().find($('label.error')).text('');
-            password_elem.parent().find($('label.error')).css('display','none');
+            password_elem.parent().find($('label.error')).text('').css('display','none');
         } else if(password_elem.val().length < 5){
             error_status = true;
             password_elem.addClass('error');
             password_elem.parent().find($('p.error-msg')).text('Password phải lớn hơn 5 ký tự');
-            password_elem.parent().find($('label.error')).text('');
-            password_elem.parent().find($('label.error')).css('display','none');
+            password_elem.parent().find($('label.error')).text('').css('display','none');
         } else {
             error_status = false;
             password_elem.removeClass('error');
@@ -152,8 +146,7 @@ $(document).ready(function(){
             error_status = true;
             email_elem.addClass('error');
             email_elem.parent().find($('p.error-msg')).text('Email sai định dạng');
-            email_elem.parent().find($('label.error')).text('');
-            email_elem.parent().find($('label.error')).css('display','none');
+            email_elem.parent().find($('label.error')).text('').css('display','none');
         } else {
             error_status = false;
             email_elem.removeClass('error');
@@ -165,8 +158,7 @@ $(document).ready(function(){
             error_status = true;
             full_name_elem.addClass('error');
             full_name_elem.parent().find($('p.error-msg')).text('Họ và tên không được để trống');
-            full_name_elem.parent().find($('label.error')).text('');
-            full_name_elem.parent().find($('label.error')).css('display','none');
+            full_name_elem.parent().find($('label.error')).text('').css('display','none');
         } else {
             error_status = false;
             full_name_elem.removeClass('error');
@@ -182,15 +174,11 @@ $(document).ready(function(){
             error_status = true;
             username_elem.addClass('error');
             username_elem.parent().find($('p.error-msg')).text('');
-        } else if(!regular_username.test(username_elem.val())) {
-            event.preventDefault();
-            error_status = true;
-            username_elem.addClass('error');
-            username_elem.parent().find($('p.error-msg')).text('');
         } else {
             error_status = false;
             username_elem.removeClass('error');
         }
+
         //validate password
         if(password_elem.val() === ''){
             event.preventDefault();
@@ -206,16 +194,7 @@ $(document).ready(function(){
             error_status = false;
             password_elem.removeClass('error');
         }
-        //validate email
-        if(email_elem.val() !== '' && !regular_email.test(email_elem.val())){
-            event.preventDefault();
-            error_status = true;
-            email_elem.addClass('error');
-            email_elem.parent().find($('p.error-msg')).text('');
-        } else {
-            error_status = false;
-            email_elem.removeClass('error');
-        }
+
         //validate full name
         if(full_name_elem.val() === ''){
             event.preventDefault();
@@ -226,6 +205,20 @@ $(document).ready(function(){
             error_status = false;
             full_name_elem.removeClass('error');
         }
+
+        //validate email
+        if(email_elem.val() !== ''){
+            if(!regular_email.test(email_elem.val())){
+                event.preventDefault();
+                error_status = true;
+                email_elem.addClass('error');
+                email_elem.parent().find($('p.error-msg')).text('');
+            } else {
+                error_status = false;
+                email_elem.removeClass('error');
+            }
+        }
+
         console.log(error_status);
 
         /* Phần bên dưới để xử lí ajax khi bên fe hết lỗi và gửi request sang bên be,
@@ -271,7 +264,7 @@ $(document).ready(function(){
         },
         messages: {
             "username": {
-                required: "User name không được để trống"
+                required: "Username không được để trống"
             },
             "password": {
                 required: "Password không được để trống",

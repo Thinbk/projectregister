@@ -44,8 +44,8 @@
                                     <td>Admin</td>
                                 @endif
                                 <td>
-                                    <button class="btn-danger"><a href="{{ route('deleteuser', ['id' => $users->id]) }}" >Xóa</a></button>
-                                    <button class="btn-warning"><a href="{{ route('getupdate', ['id' => $users->id]) }}">Sửa</a></button>
+                                    <a class="btn btn-danger" href="{{ route('deleteuser', ['id' => $users->id]) }}" onclick="return confirm('Bạn chắc chắn muốn xóa user này không?')">Xóa</a>
+                                    <a class="btn btn-warning" href="{{ route('getupdate', ['id' => $users->id]) }}" >Sửa</a>
                                 </td>
                             </tr>
                         @endforeach

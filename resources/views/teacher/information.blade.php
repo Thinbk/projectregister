@@ -46,7 +46,7 @@
                         {{ $infor[0]->phone_number }}
                     </div>
                 </div>
-                <button class="btn-warning"><a href="{{ route('inforlecture') }}">Sửa</a></button>
+                <a class="btn btn-warning" href="{{ route('inforlecture') }}">Sửa</a>
             </div>
         </div>
     </div>

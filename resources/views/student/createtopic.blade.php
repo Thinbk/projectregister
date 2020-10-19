@@ -55,7 +55,7 @@
                     <button type="reset" class="btn btn-danger">Hủy</button>
                     <button type="submit" class="btn btn-warning">Submit</button>
                     @else
-                    <p>ban da dang ky roi </p>
+                    <h2>Bạn đã đăng ký đề tài</h2>
                     @endif
                 </form>
             </div>

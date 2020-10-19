@@ -18,6 +18,7 @@
                     <tr>
                         <th width="5%">STT</th>
                         <th width="40%">Tiêu đề</th>
+                        <th width="40%">Tên sinh viên</th>
                         <th width="15%">Ngày gửi</th>
                     </tr>
                     </thead>
@@ -26,6 +27,7 @@
                         <tr>
                             <td>{{ $index+1 }}</td>
                             <td>{{ $topic->name }}</td>
+                            <td>{{ $topic->student->user->full_name }}</td>
                             <td>{{ \Carbon\Carbon::parse($topic->created_at)->format('d/m/Y') }}</td>
                         </tr>
                     @endforeach

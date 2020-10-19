@@ -15,8 +15,9 @@
                 <thead>
                 <tr>
                     <th width="5%">STT</th>
-                    <th width="40%">Tiêu đề</th>
-                    <th width="15%">Ngày gửi</th>
+                    <th width="30%">Tiêu đề</th>
+                    <td width="40%">Tên sinh viên</td>
+                    <th width="10%">Ngày gửi</th>
                     <th width="15%">Trạng thái</th>
                 </tr>
                 </thead>
@@ -25,9 +26,10 @@
                     <tr>
                         <td> {{ $index+1 }} </td>
                         <td>{{ $topic->name }}</td>
+                        <td>{{ $topic->student->user->full_name }}</td>
                         <td>{{ \Carbon\Carbon::parse($topic->created_at)->format('d/m/Y') }}</td>
                         <td>
-                            <button class="btn-warning"><a href="{{ route('postconfirmcancel', ['id' => $topic->id]) }}">Xác nhận hủy</a></button>
+                            <a onclick="return confirm('Bạn có chắc chắn cho phép sinh viên hủy đề tài này?')" class="btn btn-warning" href="{{ route('postconfirmcancel', ['id' => $topic->id]) }}">Xác nhận hủy</a>
                         </td>
                     </tr>
                 @endforeach

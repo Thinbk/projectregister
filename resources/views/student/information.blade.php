@@ -64,7 +64,7 @@
                         {{ $infor->student->student_code }}
                     </div>
                 </div>
-                <button class="btn-warning"><a href="{{ route('inforstudent') }}">Sửa</a></button>
+                <a class="btn btn-warning" href="{{ route('inforstudent') }}">Sửa</a>
             </div>
         </div>
     </div>
