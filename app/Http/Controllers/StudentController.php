@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Student\CreateTopicRequest;
+use App\Http\Requests\Student\SubmitReportRequest;
+use App\Http\Requests\Student\UpdateInforRequest;
 use App\Lecturer;
 use App\SubmitReport;
 use App\Topic;
@@ -34,15 +37,8 @@ class StudentController extends Controller
         $editinfor = Auth::user();
         return view('student.updateinformation', ['editinfor' => $editinfor]);
     }
-    public function updateInfor(Request $request)
+    public function updateInfor(UpdateInforRequest $request)
     {
-        $validates = Validator::make($request->all(), [
-            'username' => 'required|unique:users|min:3|max:50',
-            'email' => 'required|email|unique:users',
-        ], [
-            'username.required' => 'khong duoc de trong',
-        ]);
-
         $updateinfor = $request->all();
         $this->user->updateStudent($updateinfor, Auth::user()->id);
         return redirect()->route('getinforstudent');
@@ -56,9 +52,10 @@ class StudentController extends Controller
             'check_create_topic' => $this->topic->checkCreateTopic($student_id)
         ]);
     }
-    public function postTopic(Request $request)
+    public function postTopic(CreateTopicRequest $request)
     {
-        $this->topic->createTopic($request);
+        $postTopic = $request->all();
+        $this->topic->createTopic($postTopic);
         return redirect()->route('gettopic');
     }
     public function statusTopic()
@@ -82,21 +79,28 @@ class StudentController extends Controller
         $extendtopic = $this->topic->getTopic();
         return view('student.extend_topic', compact('extendtopic'));
     }
-    public function postExtendTopic()
+    public function getExtendTopic()
     {
-
+        $extendtopic = $this->topic->getTopic();
+        return view('student.formextendtopic',compact('extendtopic'));
+    }
+    public function postExtendTopic(Request $request)
+    {
+        $postextend = $request->all();
+        $this->topic->postExtendTopic($this->topic->getTopic()[0]->id, $postextend);
+        return redirect()->route('extendTopic');
     }
     public function getFormSubmit()
     {
-        return view('student.submitproject');
+        return view('student.submitproject', ['topics' => $this->topic->getIdtopic()]);
     }
 
-    public function submitReport(Request $request)
+    public function submitReport(SubmitReportRequest $request)
     {
         $submitreport = new SubmitReport();
 
         $submitreport->description = $request->get('description');
-        $submitreport->topic_id = 1; // chưa lấy dc topic_id nên anh fixx cứng = 1 cho dễ làm
+        $submitreport->topic_id = $request->get('topic_id');
         $submitreport->file = $request->file('file')->getClientOriginalName();
         $request->file('file')->move(public_path('/upload'), $submitreport->file);
         // file nộp kia sẽ vào mục public/upload nhé

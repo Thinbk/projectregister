@@ -38,11 +38,11 @@ class Topic extends Model
     {
         $createtopic = new Topic();
 
-        $createtopic->name = $request->topic_name;
-        $createtopic->topic_code = $request->topic_code;
-        $createtopic->lecturer_id = $request->lecturers;
-        $createtopic->student_id = $request->student_id;
-        $createtopic->date = $request->date;
+        $createtopic->name = $request['name'];
+        $createtopic->topic_code = $request['topic_code'];
+        $createtopic->lecturer_id = $request['lecturer_id'];
+        $createtopic->student_id = $request['student_id'];
+        $createtopic->date = $request['date'];
         $createtopic->topic_status = 0;
         /* 2 dòng phía dưới không cần thêm vào anh nhé,
         vì chỉ khi nào sinh viên gia hạn đề tài hoặc xin hủy thì mới trong trạng thái chờ duyệt */
@@ -54,21 +54,37 @@ class Topic extends Model
 
     public function getTopic()
     {
-        return $topic = Topic::all();
+        return $topic = Topic::where('student_id', Auth::user()->student->id)
+            ->where('cancel_topic_status','<', 2) //cho cai cancel topic mat di
+            ->get();
     }
     public function getTopicStudent()
     {
         return Topic::where('lecturer_id', Auth::user()->lecturer->id)->get();
     }
+    public function getIdtopic()
+    {
+        return Topic::where('student_id', Auth::user()->student->id)->get();
+    }
     public function checkCreateTopic($student_id)
     {
-        return $topic = Topic::all()->where('student_id','=', $student_id)->isEmpty();
+        return $topic = Topic::all()
+            ->where('student_id','=', $student_id)
+            ->isEmpty();
     }
 
     public function cancelTopic($id)
     {
         //trạng thái hủy có 3 TH: 0 - chưa hủy, 1 - đã hủy và chờ duyệt, 2 - đã duyệt hủy
         return DB::table('topics')->where('id', $id)->update(['cancel_topic_status' => 1]); // chỗ này sửa lại là 1 nhé
+    }
+    // mac dinh la null, xin gia han la 1, duyet gia han 2
+    public function postExtendTopic($id, $request)
+    {
+        $extend = Topic::findOrFail($id);
+        $extend->extend_date = $request['extend_date'];
+        $extend->extend_topic_status = 1;
+        $extend->save();
     }
 
     public function cofnirmExtendTopic($id)

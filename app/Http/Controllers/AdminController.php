@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Admin\CreateUserRequest;
+use App\Http\Requests\Admin\UpdateInforRequest;
+use App\Http\Requests\Admin\UpdateUserRequest;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -29,13 +32,6 @@ class AdminController extends Controller
     }
     public function updateInfor(Request $request)
     {
-        $validates = Validator::make($request->all(), [
-            'username' => 'required|unique:users|min:3|max:50',
-            'email' => 'required|email|unique:users',
-        ], [
-            'username.required' => 'khong duoc de trong',
-        ]);
-
         $updateinfor = $request->all();
         $this->user->updateInfor($updateinfor, Auth::user()->id);
         return redirect()->route('getinforadmin');
@@ -50,7 +46,7 @@ class AdminController extends Controller
         return view('admin.createuser');
     }
 
-    public function createUser(Request $request)
+    public function createUser(CreateUserRequest $request)
     {
         $user = $request->all();
 
@@ -63,7 +59,7 @@ class AdminController extends Controller
         $id = User::findOrFail($id);
         return view('admin.updateuser', ['id' => $id], compact('id'));
     }
-    public function updateUser(Request $request, $id)
+    public function updateUser(UpdateUserRequest $request, $id)
     {
         $updateUser = $request->all();
         $this->user->updateUser($id, $updateUser);

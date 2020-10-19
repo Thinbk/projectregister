@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Lecture\UpdateInforRequest;
 use App\Topic;
 use App\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Validator;
 
@@ -30,15 +30,8 @@ class LecturerController extends Controller
         return view('teacher.updateinformation', ['editinfor' => $editinfor]);
     }
 
-    public function updateInfor(Request $request)
+    public function updateInfor(UpdateInforRequest $request)
     {
-        $validates = Validator::make($request->all(), [
-            'username' => 'required|unique:users|min:3|max:50',
-            'email' => 'required|email|unique:users',
-        ], [
-            'username.required' => 'khong duoc de trong',
-        ]);
-
         $updateinfor = $request->all();
         $this->user->updateInfor($updateinfor, Auth::user()->id);
         return redirect()->route('getinforlecture');

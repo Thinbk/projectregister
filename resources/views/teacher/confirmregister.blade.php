@@ -29,7 +29,11 @@
                         <td>{{ $topic->student->user->full_name }}</td>
                         <td>{{ \Carbon\Carbon::parse($topic->created_at)->format('d/m/Y') }}</td>
                         <td>
-                            <a class="btn btn-primary" href="{{ route('postconfirmregister',['id' => $topic->id]) }}">Xác nhận</a>
+                            @if($topic->topic_status == 1)
+                                Đã Duyệt
+                            @else
+                            <a class="btn btn-warning" href="{{ route('postconfirmregister',['id' => $topic->id]) }}">Xác nhận </a>
+                            @endif
                         </td>
                     </tr>
                 @endforeach

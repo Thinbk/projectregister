@@ -23,6 +23,7 @@ class CreateTopicsTable extends Migration
             $table->foreign('lecturer_id')->references('id')->on('lecturers');
             $table->integer('topic_status')->nullable();
             $table->timestamp('date')->nullable();
+            $table->timestamp('extend_date')->nullable();
             $table->integer('cancel_topic_status')->nullable();
             $table->integer('extend_topic_status')->nullable();
             $table->timestamp('created_at')->nullable();
