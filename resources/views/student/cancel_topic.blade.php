@@ -36,9 +36,7 @@
                                 @elseif($canceltopics->cancel_topic_status == 2)
                                     <p>Đề tài đã được hủy</p>
                                 @else
-                                <button class="btn-warning">
-                                    <a href="{{ route('canceltopic', ['id' => $canceltopics->id]) }}">Hủy</a>
-                                </button>
+                                    <a class="btn btn-danger" href="{{ route('canceltopic', ['id' => $canceltopics->id]) }}" onclick="return confirm('Bạn có chắc chắn muốn hủy đề tài?')">Hủy</a>
                                 @endif
                             </td>
                         </tr>

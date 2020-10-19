@@ -12,7 +12,7 @@
 
         <div class="row">
             <div class="col-lg-9">
-                <form action="" method="post">
+                <form action="{{ route('posttopic') }}" method="post">
                     @csrf
                     @if(!isset($topics[0]->cancel_topic_status))
                         <div class="form-group row">
@@ -31,14 +31,12 @@
 
                         @if(isset($lecturers) && !empty($lecturers))
                             <div class="form-group row">
-                                <label for="inputTeacherCode" class="col-sm-2 col-form-label">Giáo Viên Hướng Dẫn
-                                    *</label>
+                                <label for="inputTeacherCode" class="col-sm-2 col-form-label">Giáo Viên Hướng Dẫn *</label>
                                 <div class="col-sm-10">
                                     <select name="lecturer_id" class="form-control">
                                         <option value="0">--Chọn giáo viên--</option>
                                         @foreach($lecturers as $lecturer)
-                                            <option
-                                                value="{{ $lecturer->id }}">{{ $lecturer->user->full_name }}</option>
+                                            <option value="{{ $lecturer->id }}">{{ $lecturer->user->full_name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -56,7 +54,7 @@
                         <button type="reset" class="btn btn-danger">Hủy</button>
                         <button type="submit" class="btn btn-warning">Submit</button>
                     @else
-                        <p>ban da dang ky roi </p>
+                        <h2>Bạn đã đăng ký đề tài</h2>
                     @endif
                 </form>
             </div>

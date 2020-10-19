@@ -48,7 +48,7 @@
                         </div>
                     </div>
                     <button type="reset" class="btn btn-danger">Hủy</button>
-                    <button type="submit" class="btn btn-warning">sửa</button>
+                    <button type="submit" class="btn btn-warning">Sửa</button>
                 </form>
             </div>
         </div>
