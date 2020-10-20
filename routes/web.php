@@ -13,13 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('welcome');
-});
+});*/
 
 //login
-Route::get('/login','AuthController@getLogin')->name('login');
-Route::post('/login','AuthController@login')->name('postLogin');
+Route::get('/','AuthController@getLogin')->name('login');
+Route::post('/','AuthController@login')->name('postLogin');
 Route::get('/logout','AuthController@logout')->name('logout');
 Route::get('/signup','AuthController@getSignup')->name('getsignup');
 Route::post('/signup','AuthController@signup')->name('signup');
@@ -66,12 +66,15 @@ Route::middleware(['checkrole:teacher'])->prefix('lecture')->group(function(){
 
     Route::get('confirmregister', 'LecturerController@getConfirmRegisterTopic')->name('confirmregister');
     Route::get('confirmregister/{id}', 'LecturerController@confirmRegisterTopic')->name('postconfirmregister');
+    Route::get('cancelregistertopic/{id}', 'LecturerController@cancelRegisterTopic')->name('cancelregister');
 
     Route::get('confirmextend', 'LecturerController@getConfirmExtendTopic')->name('confirmextend');
     Route::get('confirmextend/{id}', 'LecturerController@confirmExtendTopic')->name('postconfirmextend');
+    Route::get('cancelextendtopic/{id}', 'LecturerController@cancelExtendTopic')->name('cancelextend');
 
     Route::get('confirmcancel', 'LecturerController@getConfirmCancelTopic')->name('confirmcancel');
     Route::get('confirmcancel/{id}', 'LecturerController@confirmCancelTopic')->name('postconfirmcancel');
+    Route::get('notconfirmcanceltopic/{id}', 'LecturerController@notConfirmCancelTopic')->name('notconfirmcanceltopic');
 
     Route::get('/information/', 'LecturerController@getInfor')->name('getinforlecture');
     Route::get('/editinformation', 'LecturerController@editInfor')->name('inforlecture');

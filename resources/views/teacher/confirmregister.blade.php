@@ -16,9 +16,9 @@
                 <tr>
                     <th width="5%">STT</th>
                     <th width="30%">Tiêu đề</th>
-                    <th width="40%">Tên sinh viên</th>
+                    <th width="30%">Tên sinh viên</th>
                     <th width="10%">Ngày gửi</th>
-                    <th width="15%">Trạng thái</th>
+                    <th width="25%">Trạng thái</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -29,10 +29,19 @@
                         <td>{{ $topic->student->user->full_name }}</td>
                         <td>{{ \Carbon\Carbon::parse($topic->created_at)->format('d/m/Y') }}</td>
                         <td>
+                            {{--
+                            topic_status:
+                             +/ 0 - chờ duyệt(mặc định khi sinh viên đăng ký đề tài xong)
+                             +/ 1 - giáo viên đã duyệt
+                             +/ 2 - giáo viên đã hủy duyệt
+                            --}}
                             @if($topic->topic_status == 1)
                                 Đã Duyệt
+                            @elseif($topic->topic_status == 2)
+                                Đề tài không được xác nhận
                             @else
-                            <a class="btn btn-warning" href="{{ route('postconfirmregister',['id' => $topic->id]) }}">Xác nhận </a>
+                                <a class="btn btn-success" href="{{ route('postconfirmregister',['id' => $topic->id]) }}">Xác nhận</a>
+                                <a class="btn btn-warning" href="{{ route('cancelregister',['id' => $topic->id]) }}">Không xác nhận</a>
                             @endif
                         </td>
                     </tr>

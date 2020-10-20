@@ -48,8 +48,9 @@ class StudentController extends Controller
         $student_id = Auth::user()->student->id;
         return view('student.createtopic', [
             'lecturers' => $this->lecturer->getAllLecturer(),
-            'topics' => $this->topic->getTopic(),
-            'check_create_topic' => $this->topic->checkCreateTopic($student_id)
+            'topic' => $this->topic->getTopic(),
+            'check_create_topic' => $this->topic->checkCreateTopic($student_id),
+//            'check_cancel_topic' => $this->topic->checkCancelTopic($student_id)
         ]);
     }
     public function postTopic(CreateTopicRequest $request)
@@ -60,6 +61,7 @@ class StudentController extends Controller
     }
     public function statusTopic()
     {
+        $student_id = Auth::user()->student->id;
         $topic = $this->topic->getTopic();
         return view('student.statustopic', compact('topic'));
     }

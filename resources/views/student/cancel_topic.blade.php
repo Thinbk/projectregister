@@ -31,10 +31,21 @@
                             <td>{{ $canceltopics->lecturer->user->full_name }}</td>
                             <td>{{ \Carbon\Carbon::parse($canceltopics->created_at)->format('d/m/Y') }}</td>
                             <td>
-                                @if($canceltopics->cancel_topic_status == 1)
-                                    <p>Chờ duyệt hủy đề tài</p>
-                                @elseif($canceltopics->cancel_topic_status == 2)
-                                    <p>Đề tài đã được hủy</p>
+                                {{--
+                                cancel_topic_status:
+                                 +/ NULL - chưa hủy(mặc định)
+                                 +/ 0 - đã hủy và chờ giáo viên duyệt
+                                 +/ 1 - giáo viên đã duyệt
+                                 +/ 2 - giáo viên đã hủy duyệt
+                                --}}
+                                @if(!is_null($canceltopics->cancel_topic_status))
+                                    @if($canceltopics->cancel_topic_status == 0)
+                                        <p>Chờ duyệt hủy đề tài</p>
+                                    @elseif($canceltopics->cancel_topic_status == 1)
+                                        <p>Đề tài đã được hủy</p>
+                                    @elseif($canceltopics->cancel_topic_status == 2)
+                                        <p>Đề tài không được hủy</p>
+                                    @endif
                                 @else
                                     <a class="btn btn-danger" href="{{ route('canceltopic', ['id' => $canceltopics->id]) }}" onclick="return confirm('Bạn có chắc chắn muốn hủy đề tài?')">Hủy</a>
                                 @endif

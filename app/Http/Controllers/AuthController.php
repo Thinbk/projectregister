@@ -26,7 +26,7 @@ class AuthController extends Controller
         $this->user->createUser($user);
 //        dd($user);
 
-        return redirect('/login');
+        return redirect()->route('login');
     }
     public function getLogin()
     {
@@ -48,14 +48,13 @@ class AuthController extends Controller
                 return redirect()->route('gettopic');
             }
         } else {
-            return redirect()
-                ->route('login');
+            return redirect()->route('login');
         }
     }
 
     public function logout()
     {
         Auth::logout();
-        return redirect('/login');
+        return redirect()->route('login');
     }
 }

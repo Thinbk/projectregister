@@ -19,7 +19,6 @@ class Topic extends Model
         'date',
         'cancel_topic_status',
         'extend_topic_status',
-
     ];
 
     public function lecturer() {
@@ -36,6 +35,12 @@ class Topic extends Model
 
     public function createTopic($request)
     {
+        /**
+         * (topic_status):
+         * 0 - chờ duyệt(mặc định khi sinh viên đăng ký đề tài xong)
+         * 1 - giáo viên đã duyệt
+         * 2 - giáo viên đã hủy duyệt
+         */
         $createtopic = new Topic();
 
         $createtopic->name = $request['name'];
@@ -44,10 +49,6 @@ class Topic extends Model
         $createtopic->student_id = $request['student_id'];
         $createtopic->date = $request['date'];
         $createtopic->topic_status = 0;
-        /* 2 dòng phía dưới không cần thêm vào anh nhé,
-        vì chỉ khi nào sinh viên gia hạn đề tài hoặc xin hủy thì mới trong trạng thái chờ duyệt */
-        /*$createtopic->extend_topic_status = 0;
-        $createtopic->cancel_topic_status = 0;*/
 
         $createtopic->save();
     }
@@ -55,51 +56,127 @@ class Topic extends Model
     public function getTopic()
     {
         return $topic = Topic::where('student_id', Auth::user()->student->id)
-            ->where('cancel_topic_status','<', 2) //cho cai cancel topic mat di
+//            ->where('cancel_topic_status','<', 2) //cho cai cancel topic mat di
             ->get();
     }
+    /*public function checkCancelTopic($student_id)
+    {
+        return $topic = Topic::where('student_id', $student_id)
+            ->where('cancel_topic_status','<', 2) //cho cai cancel topic mat di
+            ->get();
+    }*/
+
     public function getTopicStudent()
     {
         return Topic::where('lecturer_id', Auth::user()->lecturer->id)->get();
     }
+
     public function getIdtopic()
     {
         return Topic::where('student_id', Auth::user()->student->id)->get();
     }
+
     public function checkCreateTopic($student_id)
     {
         return $topic = Topic::all()
-            ->where('student_id','=', $student_id)
+            ->where('student_id', $student_id)
             ->isEmpty();
     }
 
     public function cancelTopic($id)
     {
-        //trạng thái hủy có 3 TH: 0 - chưa hủy, 1 - đã hủy và chờ duyệt, 2 - đã duyệt hủy
-        return DB::table('topics')->where('id', $id)->update(['cancel_topic_status' => 1]); // chỗ này sửa lại là 1 nhé
+        /**
+         * (cancel_topic_status):
+         * NULL - chưa hủy(mặc định)
+         * 0 - đã hủy và chờ giáo viên duyệt
+         * 1 - giáo viên đã duyệt
+         * 2 - giáo viên đã hủy duyệt
+         */
+        return Topic::where('id', $id)->update(['cancel_topic_status' => 0]); // chỗ này sửa lại là 0 nhé
     }
-    // mac dinh la null, xin gia han la 1, duyet gia han 2
+
     public function postExtendTopic($id, $request)
     {
+        /**
+         * (extend_topic_status):
+         * NULL - chưa gia hạn(mặc định)
+         * 0 - đã gia hạn và chờ giáo viên duyệt
+         * 1 - giáo viên đã duyệt
+         * 2 - giáo viên đã hủy duyệt
+         */
         $extend = Topic::findOrFail($id);
         $extend->extend_date = $request['extend_date'];
-        $extend->extend_topic_status = 1;
+        $extend->extend_topic_status = 0;
         $extend->save();
     }
 
-    public function cofnirmExtendTopic($id)
+    public function confirmExtendTopic($id)
     {
-        return DB::table('topics')->where('id', $id)->update(['extend_topic_status' => 2]);
+        /**
+         * (extend_topic_status):
+         * NULL - chưa gia hạn(mặc định)
+         * 0 - đã gia hạn và chờ giáo viên duyệt
+         * 1 - giáo viên đã duyệt
+         * 2 - giáo viên đã hủy duyệt
+         */
+        return Topic::where('id', $id)->update(['extend_topic_status' => 1]);
     }
 
-    public function cofnirmCancelTopic($id)
+    public function confirmCancelTopic($id)
     {
-        return DB::table('topics')->where('id', $id)->update(['cancel_topic_status' => 2]);
+        /**
+         * (cancel_topic_status):
+         * NULL - chưa hủy(mặc định)
+         * 0 - đã hủy và chờ giáo viên duyệt
+         * 1 - giáo viên đã duyệt
+         * 2 - giáo viên đã hủy duyệt
+         */
+        return Topic::where('id', $id)->update(['cancel_topic_status' => 1]);
     }
 
-    //Mặc định là 0 - chưa duyệt, 1 - đã duyệt
     public function confirmRegisterTopic($id)
     {
-        return DB::table('topics')->where('id', $id)->update(['topic_status' => 1]);
+        /**
+         * (topic_status):
+         * 0 - chờ duyệt(mặc định khi sinh viên đăng ký đề tài xong)
+         * 1 - giáo viên đã duyệt
+         * 2 - giáo viên đã hủy duyệt
+         */
+        return Topic::where('id', $id)->update(['topic_status' => 1]);
+    }
+
+    public function cancelRegisterTopic($id)
+    {
+        /**
+         * (topic_status):
+         * 0 - chờ duyệt(mặc định khi sinh viên đăng ký đề tài xong)
+         * 1 - giáo viên đã duyệt
+         * 2 - giáo viên đã hủy duyệt
+         */
+        return Topic::where('id', $id)->update(['topic_status' => 2]);
+    }
+
+    public function cancelExtendTopic($id)
+    {
+        /**
+         * (extend_topic_status):
+         * NULL - chưa gia hạn(mặc định)
+         * 0 - đã gia hạn và chờ giáo viên duyệt
+         * 1 - giáo viên đã duyệt
+         * 2 - giáo viên đã hủy duyệt
+         */
+        return Topic::where('id', $id)->update(['extend_topic_status' => 2]);
+    }
+
+    public function notConfirmCancelTopic($id)
+    {
+        /**
+         * (cancel_topic_status):
+         * NULL - chưa hủy(mặc định)
+         * 0 - đã hủy và chờ giáo viên duyệt
+         * 1 - giáo viên đã duyệt
+         * 2 - giáo viên đã hủy duyệt
+         */
+        return Topic::where('id', $id)->update(['cancel_topic_status' => 2]);
     }
 }

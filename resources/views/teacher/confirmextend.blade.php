@@ -16,9 +16,9 @@
                 <tr>
                     <th width="5%">STT</th>
                     <th width="30%">Tiêu đề</th>
-                    <td width="40%">Tên sinh viên</td>
+                    <th width="30%">Tên sinh viên</th>
                     <th width="10%">Ngày gửi</th>
-                    <th width="15%">Trạng thái</th>
+                    <th width="25%">Trạng thái</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -29,12 +29,22 @@
                         <td>{{ $topic->student->user->full_name }}</td>
                         <td>{{ \Carbon\Carbon::parse($topic->created_at)->format('d/m/Y') }}</td>
                         <td>
-                            @if($topic->extend_topic_status == 2)
-                                <p>Đã Duyệt</p>
-                            @else
-                                <button class="btn-warning"><a
-                                        href="{{ route('postconfirmextend', ['id' => $topic->id ]) }}">Xác nhận</a>
-                                </button>
+                            {{--
+                            extend_topic_status:
+                            NULL - chưa gia hạn(mặc định)
+                            0 - đã gia hạn và chờ giáo viên duyệt
+                            1 - giáo viên đã duyệt
+                            2 - giáo viên đã hủy duyệt
+                            --}}
+                            @if(!is_null($topic->extend_topic_status))
+                                @if($topic->extend_topic_status == 0)
+                                    <a style="margin-bottom: 5px" class="btn btn-danger" href="{{ route('getform') }}">Xác nhận gia hạn đề tài</a>
+                                    <a class="btn btn-warning" href="{{ route('cancelextend',['id' => $topic->id]) }}">Không cho phép gia hạn</a>
+                                @elseif($topic->extend_topic_status == 1)
+                                    <p>Đề duyệt gia hạn đề tài</p>
+                                @elseif($topic->extend_topic_status == 2)
+                                    <p>Đã hủy duyệt gia hạn đề tài</p>
+                                @endif
                             @endif
                         </td>
                     </tr>

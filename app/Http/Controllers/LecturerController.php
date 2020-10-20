@@ -10,7 +10,6 @@ use Validator;
 
 class LecturerController extends Controller
 {
-    //
     protected $topic;
     protected $user;
 
@@ -19,11 +18,13 @@ class LecturerController extends Controller
         $this->topic = $topic;
         $this->user = $user;
     }
+
     public function getInfor()
     {
         $infor = User::where('id', Auth::user()->id)->get();
         return view('teacher.information', ['infor' => $infor]);
     }
+
     public function editInfor()
     {
         $editinfor =  User::where('id', Auth::user()->id)->get();
@@ -36,43 +37,65 @@ class LecturerController extends Controller
         $this->user->updateInfor($updateinfor, Auth::user()->id);
         return redirect()->route('getinforlecture');
     }
-    //list topic
+
+//    list topic
     public function getTopicStudent()
     {
         return view('teacher.listtopic', ['topics' => $this->topic->getTopicStudent()]);
     }
-// gv  duyet dnag ky de tai
 
+//    gv  duyet dang ky de tai
     public function getConfirmRegisterTopic()
     {
         return view('teacher.confirmregister', ['topics' => $this->topic->getTopicStudent()]);
     }
+
     public function confirmRegisterTopic($id)
     {
         $this->topic->confirmRegisterTopic($id);
-        return redirect()->route('confirmextend');
+//        return redirect()->route('confirmextend'); ?????
+        return redirect()->route('confirmregister');
     }
-// gv duyet gia han de tai
 
+    public function cancelRegisterTopic($id)
+    {
+        $this->topic->cancelRegisterTopic($id);
+        return redirect()->route('confirmregister');
+    }
+
+//    gv duyet gia han de tai
     public function getConfirmExtendTopic()
     {
         return view('teacher.confirmextend', ['topics' => $this->topic->getTopicStudent()]);
     }
+
     public function confirmExtendTopic($id)
     {
-        $this->topic->cofnirmExtendTopic($id);
+        $this->topic->confirmExtendTopic($id);
         return redirect()->route('confirmextend');
     }
 
-    // gv duyet huy de tai
+    public function cancelExtendTopic($id)
+    {
+        $this->topic->cancelExtendTopic($id);
+        return redirect()->route('confirmextend');
+    }
 
+//    gv duyet huy de tai
     public function getConfirmCancelTopic()
     {
         return view('teacher.confirmcancel', ['topics' => $this->topic->getTopicStudent()]);
     }
+
     public function confirmCancelTopic($id)
     {
-        $this->topic->cofnirmCancelTopic($id);
+        $this->topic->confirmCancelTopic($id);
+        return redirect()->route('confirmcancel');
+    }
+
+    public function notConfirmCancelTopic($id)
+    {
+        $this->topic->notConfirmCancelTopic($id);
         return redirect()->route('confirmcancel');
     }
 }
