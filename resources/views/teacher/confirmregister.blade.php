@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-lg-12sdf">
                 <ol class="breadcrumb">
-                    <li class="active"><i class="fa fa-dashboard"></i> Duyệt đăng ký đề tài đề tài </li>
+                    <li class="active"><i class="fa fa-dashboard"></i> Duyệt đăng ký đề tài</li>
                 </ol>
             </div>
         </div><!-- /.row -->
