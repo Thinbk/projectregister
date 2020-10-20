@@ -34,7 +34,7 @@ class AdminController extends Controller
     {
         $updateinfor = $request->all();
         $this->user->updateInfor($updateinfor, Auth::user()->id);
-        return redirect()->route('getinforadmin');
+        return redirect()->route('getinforadmin')->with('key', 'Cập nhật thông tin thành công');
     }
     public function getUser()
     {
@@ -52,7 +52,7 @@ class AdminController extends Controller
 
         $this->user->createUser($user);
 
-        return redirect()->route('getuser');
+        return redirect()->route('getuser')->with('key', 'Thêm người mới thành công');
     }
     public function getUpdateUser($id)
     {
@@ -63,11 +63,11 @@ class AdminController extends Controller
     {
         $updateUser = $request->all();
         $this->user->updateUser($id, $updateUser);
-        return redirect()->route('getuser');
+        return redirect()->route('getuser')->with('key', 'Sửa thông tin người dùng thành công');
     }
     public function deleteUser($id)
     {
         $this->user->deleteUser($id);
-        return redirect()->route('getuser');
+        return redirect()->route('getuser')->with('key', 'Đã xóa thành viên');
     }
 }

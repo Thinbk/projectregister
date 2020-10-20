@@ -10,6 +10,12 @@
             </div>
         </div><!-- /.row -->
 
+        @if (session('key'))
+            <div class="alert alert-success" role="alert">
+                {{ session('key') }}
+            </div>
+        @endif
+
         <div class="row">
             <h2>Danh sách đề tài</h2>
             <div class="table-responsive">

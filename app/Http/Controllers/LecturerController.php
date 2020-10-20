@@ -35,7 +35,7 @@ class LecturerController extends Controller
     {
         $updateinfor = $request->all();
         $this->user->updateInfor($updateinfor, Auth::user()->id);
-        return redirect()->route('getinforlecture');
+        return redirect()->route('getinforlecture')->with('key', 'Cập nhật thông tin thành công');
     }
 
 //    list topic
