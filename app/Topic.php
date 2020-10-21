@@ -59,6 +59,12 @@ class Topic extends Model
 //            ->where('cancel_topic_status','<', 2) //cho cai cancel topic mat di
             ->get();
     }
+    public function getExtendTopicStudent()
+    {
+        return $topic = Topic::where('student_id', Auth::user()->student->id)
+            ->where('topic_status','>=', 0)
+            ->get();
+    }
     /*public function checkCancelTopic($student_id)
     {
         return $topic = Topic::where('student_id', $student_id)
@@ -69,6 +75,19 @@ class Topic extends Model
     public function getTopicStudent()
     {
         return Topic::where('lecturer_id', Auth::user()->lecturer->id)->get();
+    }
+    //lecture
+    public function getTopicCancel()
+    {
+        return Topic::where('lecturer_id', Auth::user()->lecturer->id)
+            ->where('cancel_topic_status','>=', 0)
+            ->get();
+    }
+    public function getExtendTopic()
+    {
+        return Topic::where('lecturer_id', Auth::user()->lecturer->id)
+            ->where('extend_topic_status','>=', 0)
+            ->get();
     }
 
     public function getIdtopic()

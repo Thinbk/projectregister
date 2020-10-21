@@ -18,6 +18,7 @@
 
         <div class="row">
             <div class="col-lg-9">
+{{--                {{ dd($check_create_topic) }}--}}
                 @if($check_create_topic)
                     <form action="{{ route('posttopic') }}" method="post">
                     @csrf

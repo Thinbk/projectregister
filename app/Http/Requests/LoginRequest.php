@@ -26,7 +26,7 @@ class LoginRequest extends FormRequest
         return [
             //
             'username'   => 'required',
-            'password'   => 'required|min:3|max:255',
+            'password'   => 'required|min:5|max:255',
         ];
     }
     public function messages()
@@ -34,6 +34,8 @@ class LoginRequest extends FormRequest
         return [
             'name.required' => 'Không được để trống',
             'password.required' => 'Không được để trống',
+            'password.min' => 'Độ dài lớn hơn 5 ký tự',
+            'password.max' => 'Độ dài nhỏ hơn 255 ký tự',
         ];
     }
 }

@@ -26,15 +26,15 @@ class SignUpRequest extends FormRequest
         return [
             //
             'username'   => 'required|unique:users',
-            'password'   => 'required|min:3|max:255',
+            'password'   => 'required|min:5|max:255',
             'email' => 'unique:users|email|required'
         ];
     }
     public function messages()
     {
         return [
-            'name.required' => 'Không được để trống',
-            'name.unique' => 'Username đã tồn tại',
+            'username.required' => 'Không được để trống',
+            'username.unique' => 'Username đã tồn tại',
             'password.required' => 'Không được để trống',
             'password.min' => 'Mật khẩu có độ dài lớn hơn 3',
             'password.max' => 'Mật khẩu có độ dài nhỏ hơn 255',

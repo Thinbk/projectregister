@@ -78,7 +78,7 @@ class StudentController extends Controller
 
     public function extendTopic()
     {
-        $extendtopic = $this->topic->getTopic();
+        $extendtopic = $this->topic->getExtendTopicStudent();
         return view('student.extend_topic', compact('extendtopic'));
     }
     public function getExtendTopic()

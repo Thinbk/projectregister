@@ -37,13 +37,15 @@
                             2 - giáo viên đã hủy duyệt
                             --}}
                             @if(!is_null($topic->extend_topic_status))
-                                @if($topic->extend_topic_status == 0)
-                                    <a style="margin-bottom: 5px" class="btn btn-danger" href="{{ route('getform') }}">Xác nhận gia hạn đề tài</a>
-                                    <a class="btn btn-warning" href="{{ route('cancelextend',['id' => $topic->id]) }}">Không cho phép gia hạn</a>
+                                @if($topic->cancel_topic_status == 2)
+                                    <p>Đề tài đã bị hủy</p>
                                 @elseif($topic->extend_topic_status == 1)
-                                    <p>Đề duyệt gia hạn đề tài</p>
+                                    <p>Đã duyệt gia hạn đề tài</p>
                                 @elseif($topic->extend_topic_status == 2)
                                     <p>Đã hủy duyệt gia hạn đề tài</p>
+                                @else
+                                    <a class="btn btn-danger" href="{{ route('getform') }}">Xác nhận</a>
+                                    <a class="btn btn-warning" href="{{ route('cancelextend',['id' => $topic->id]) }}">Hủy gia hạn</a>
                                 @endif
                             @endif
                         </td>

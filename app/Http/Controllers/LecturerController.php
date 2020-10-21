@@ -66,7 +66,7 @@ class LecturerController extends Controller
 //    gv duyet gia han de tai
     public function getConfirmExtendTopic()
     {
-        return view('teacher.confirmextend', ['topics' => $this->topic->getTopicStudent()]);
+        return view('teacher.confirmextend', ['topics' => $this->topic->getExtendTopic()]);
     }
 
     public function confirmExtendTopic($id)
@@ -84,7 +84,7 @@ class LecturerController extends Controller
 //    gv duyet huy de tai
     public function getConfirmCancelTopic()
     {
-        return view('teacher.confirmcancel', ['topics' => $this->topic->getTopicStudent()]);
+        return view('teacher.confirmcancel', ['topics' => $this->topic->getTopicCancel()]);
     }
 
     public function confirmCancelTopic($id)
