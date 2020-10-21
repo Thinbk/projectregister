@@ -41,7 +41,7 @@ class StudentController extends Controller
     {
         $updateinfor = $request->all();
         $this->user->updateStudent($updateinfor, Auth::user()->id);
-        return redirect()->route('getinforstudent');
+        return redirect()->route('getinforstudent')->with('key', 'Cập nhật thông tin thành công');
     }
     public function getTopic()
     {
@@ -57,7 +57,7 @@ class StudentController extends Controller
     {
         $postTopic = $request->all();
         $this->topic->createTopic($postTopic);
-        return redirect()->route('gettopic');
+        return redirect()->route('gettopic')->with('key', 'Đăng ký đề tài thành công');
     }
     public function statusTopic()
     {
@@ -108,6 +108,6 @@ class StudentController extends Controller
         // file nộp kia sẽ vào mục public/upload nhé
 
         $submitreport->save();
-        return redirect()->route('submitreport');
+        return redirect()->route('submitreport')->with('key', 'Nộp file thành công');
     }
 }

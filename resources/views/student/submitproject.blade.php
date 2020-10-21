@@ -9,6 +9,13 @@
                 </ol>
             </div>
         </div><!-- /.row -->
+
+        @if (session('key'))
+            <div class="alert alert-success" role="alert">
+                {{ session('key') }}
+            </div>
+        @endif
+
         <div class="row">
             <div class="col-lg-9">
                 <form action="{{ route('submit') }}" method="post" enctype="multipart/form-data">
