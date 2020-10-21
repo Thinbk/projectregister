@@ -50,6 +50,7 @@
                                 1 - giáo viên đã duyệt
                                 2 - giáo viên đã hủy duyệt
                                 --}}
+
                                 @if(!is_null($extendtopic->extend_topic_status))
                                     @if($extendtopic->extend_topic_status == 0)
                                        <p>Đã gia hạn đề tài</p>
@@ -58,6 +59,8 @@
                                     @elseif($extendtopic->extend_topic_status == 2)
                                         <p>Đề tài không được gia hạn</p>
                                     @endif
+                                @elseif($extendtopic->cancel_topic_status)
+                                    <p>Đề tài đã được hủy</p>
                                 @else
                                     <a class="btn btn-warning" href="{{ route('getform') }}">Gia Hạn đề tài</a>
                                 @endif

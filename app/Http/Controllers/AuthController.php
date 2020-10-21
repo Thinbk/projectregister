@@ -49,7 +49,7 @@ class AuthController extends Controller
                 return redirect()->route('gettopic')->with('key', 'Đăng nhập thành công');
             }
         } else {
-            return redirect()->route('login');
+            return redirect()->route('login')->with('error', 'Sai username hoặc mật khẩu');
         }
     }
 

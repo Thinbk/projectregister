@@ -42,6 +42,8 @@
                                 <td>Chờ duyệt</td>
                             @elseif($topics->topic_status == 1 )
                                 <td>Đã duyệt</td>
+                            @elseif($topics->cancel_topic_status == 2)
+                                <td>Đã Hủy</td>
                             @endif
                         </tr>
                     @endforeach

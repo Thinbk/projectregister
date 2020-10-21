@@ -28,6 +28,7 @@
                         <td>{{ $topic->name }}</td>
                         <td>{{ $topic->student->user->full_name }}</td>
                         <td>{{ \Carbon\Carbon::parse($topic->created_at)->format('d/m/Y') }}</td>
+{{--                        <td>{{ $topic->cancel_topic_status }}</td>  Đề tài đã bị hủy--}}
                         <td>
                             {{--
                             topic_status:
@@ -36,9 +37,11 @@
                              +/ 2 - giáo viên đã hủy duyệt
                             --}}
                             @if($topic->topic_status == 1)
-                                Đã Duyệt
+                                <p>Đã Duyệt</p>
                             @elseif($topic->topic_status == 2)
-                                Đề tài không được xác nhận
+                                <p>Đề tài không được xác nhận</p>
+                            @elseif($topic->cancel_topic_status == 2)
+                                <p>Đề tài đã bị hủy</p>
                             @else
                                 <a class="btn btn-success" href="{{ route('postconfirmregister',['id' => $topic->id]) }}">Xác nhận</a>
                                 <a class="btn btn-warning" href="{{ route('cancelregister',['id' => $topic->id]) }}">Không xác nhận</a>
