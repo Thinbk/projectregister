@@ -62,7 +62,7 @@ class Topic extends Model
     public function getExtendTopicStudent()
     {
         return $topic = Topic::where('student_id', Auth::user()->student->id)
-            ->where('topic_status','>=', 0)
+            ->where('topic_status','>', 0)
             ->get();
     }
     /*public function checkCancelTopic($student_id)

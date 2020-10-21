@@ -44,7 +44,7 @@
                                 @elseif($topic->extend_topic_status == 2)
                                     <p>Đã hủy duyệt gia hạn đề tài</p>
                                 @else
-                                    <a class="btn btn-danger" href="{{ route('getform') }}">Xác nhận</a>
+                                    <a class="btn btn-danger" href="{{ route('postconfirmextend', ['id' => $topic->id ]) }}">Xác nhận</a>
                                     <a class="btn btn-warning" href="{{ route('cancelextend',['id' => $topic->id]) }}">Hủy gia hạn</a>
                                 @endif
                             @endif

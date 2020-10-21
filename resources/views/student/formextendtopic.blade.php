@@ -40,7 +40,7 @@
 
             <div class="col-lg-12">
                 <div class="form-group row">
-                    <label for="inputUser" class="col-sm-2 col-form-label">Them Ngay Gia Han</label>
+                    <label for="inputUser" class="col-sm-2 col-form-label">Ngày gia hạn mời</label>
                     <div class="col-sm-10">
                         <input type="date" name="extend_date" value="">
                     </div>
