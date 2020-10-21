@@ -41,9 +41,11 @@
                             @if($topics->topic_status == 0 )
                                 <td>Chờ duyệt</td>
                             @elseif($topics->topic_status == 1 )
-                                <td>Đã duyệt</td>
-                            @elseif($topics->cancel_topic_status == 2)
-                                <td>Đã Hủy</td>
+                                @if($topics->cancel_topic_status == 1)
+                                    <td>Đã Hủy</td>
+                                @else
+                                    <td>Đã duyệt</td>
+                                @endif
                             @endif
                         </tr>
                     @endforeach

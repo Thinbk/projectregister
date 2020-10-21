@@ -37,7 +37,7 @@
                             2 - giáo viên đã hủy duyệt
                             --}}
                             @if(!is_null($topic->extend_topic_status))
-                                @if($topic->cancel_topic_status == 2)
+                                @if($topic->cancel_topic_status == 1)
                                     <p>Đề tài đã bị hủy</p>
                                 @elseif($topic->extend_topic_status == 1)
                                     <p>Đã duyệt gia hạn đề tài</p>

@@ -40,7 +40,7 @@
                                 <p>Đã Duyệt</p>
                             @elseif($topic->topic_status == 2)
                                 <p>Đề tài không được xác nhận</p>
-                            @elseif($topic->cancel_topic_status == 2)
+                            @elseif($topic->cancel_topic_status == 1)
                                 <p>Đề tài đã bị hủy</p>
                             @else
                                 <a class="btn btn-success" href="{{ route('postconfirmregister',['id' => $topic->id]) }}">Xác nhận</a>

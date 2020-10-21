@@ -59,7 +59,7 @@
                                     @elseif($extendtopic->extend_topic_status == 2)
                                         <p>Đề tài không được gia hạn</p>
                                     @endif
-                                @elseif($extendtopic->cancel_topic_status)
+                                @elseif($extendtopic->cancel_topic_status == 1)
                                     <p>Đề tài đã được hủy</p>
                                 @else
                                     <a class="btn btn-warning" href="{{ route('getform') }}">Gia Hạn đề tài</a>
