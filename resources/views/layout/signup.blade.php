@@ -2,7 +2,7 @@
 
 <div class="container">
     <h2>Đăng ký thành viên</h2>
-    <form class="form-signup" action="{{ route('signup') }}" method="post">
+    <form action="{{ route('signup') }}" method="post">
         @csrf
 
         <div class="form-group">

@@ -2,14 +2,17 @@
 
 namespace App;
 
-use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Carbon\Carbon;
+use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
+use Illuminate\Auth\Authenticatable as AuthenticatableTrait;
+use Illuminate\Contracts\Auth\Authenticatable;
 
-class User extends Authenticatable
+class User extends Eloquent implements Authenticatable
 {
     use Notifiable;
+    use AuthenticatableTrait;
 
     /**
      * The attributes that are mass assignable.
@@ -25,6 +28,15 @@ class User extends Authenticatable
         'date_of_birth',
         'phone_number',
         'user_type'
+    ];
+
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+    ];
+
+    protected $hidden = [
+        'password',
+        'remember_token',
     ];
 
     public function student()

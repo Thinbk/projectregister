@@ -3,8 +3,9 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
 
-class Lecturer extends Model
+class Lecturer extends Eloquent
 {
     //
     protected $fillable = [

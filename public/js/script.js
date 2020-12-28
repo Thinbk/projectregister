@@ -167,7 +167,7 @@ $(document).ready(function(){
     });
     $('.form-signup').submit(function(event){
         let form = $(this);
-        debugger;
+        // debugger;
         //validate username
         if(username_elem.val() === ''){
             event.preventDefault();

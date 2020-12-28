@@ -2,7 +2,7 @@
 
 <div class="container">
     <h2>Đăng nhập</h2>
-    <form class="form-signin" action="{{ route('postLogin') }}" method="post">
+    <form action="{{ route('postLogin') }}" method="post">
         @csrf
 
 {{--        @if ($errors->any())--}}

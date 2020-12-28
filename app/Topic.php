@@ -6,8 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
 
-class Topic extends Model
+class Topic extends Eloquent
 {
     use Notifiable;
 

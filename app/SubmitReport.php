@@ -4,8 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
+use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
 
-class SubmitReport extends Model
+class SubmitReport extends Eloquent
 {
     //
     protected $fillable = [
